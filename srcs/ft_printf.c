@@ -40,7 +40,8 @@ int	set_flag(const char *format, t_prn *prn, int end)
 		i++;
 	}
 	// если не цифра, выводим оставшуюся строку как текст
-	if (i < prn->size && ft_isdigit(format[i]) == 0 && format[i] != '.')
+	if (i < prn->size && ft_isdigit(format[i]) == 0 && format[i] != '.'
+		&& i != 0)
 	{
 		print_txt(&format[i], prn->size);
 		return (-1);
@@ -93,35 +94,28 @@ void	clear_format(t_prn *prn)
 	prn->size = 0;
 }
 
-int	set_mod(const char *format, t_prn *prn)
+int	set_mod(const char *format, int i, t_prn *prn)
 {
-	if (format[prn->size - 1] == 'h')
+	while(i < prn->size)
 	{
-		if(format[prn->size - 2] == 'h')
-			prn->mod_hh = 1;
-		else
-			prn->mod_h = 1;
-	}
-	else
-	{
-		if (format[prn->size - 1] == 'l')
+		if ((ft_strchr("hlL", format[i]) == NULL) || i > 1)
 		{
-			if(format[prn->size - 2] == 'l')
-				prn->mod_ll = 1;
-			else
-				prn->mod_l = 1;
+			print_txt(&format[i], prn->size);
+			return (-1);
 		}
-		else
-		{
-			if (format[prn->size - 1] == 'L')
-				prn->mod_L = 1;
-		}
+		i++;
 	}
-	if (prn->mod_h | prn->mod_l | prn->mod_L)
-		return (2);
-	if (prn->mod_hh | prn->mod_ll)
-		return (3);
-	return (0);
+	if (format[i] == 'h' && i + 1 == prn->size)
+		prn->mod_h = 1;
+	if (format[i] == 'h' && format[i + 1] == 'h' && i + 2 == prn->size)
+		prn->mod_hh = 1;
+	if (format[i] == 'l' && i + 1 == prn->size)
+		prn->mod_l = 1;
+	if (format[i] == 'l' && format[i + 1] == 'l' && i + 2 == prn->size)
+		prn->mod_ll = 1;
+	if (format[i] == 'L' && i + 1 == prn->size)
+		prn->mod_L = 1;
+	return (prn->size);
 }
 
 int set_width(const char *format, int i, t_prn *prn)
@@ -174,8 +168,8 @@ int	set_param(const char *format, t_prn *prn)
 		return (-1);
 	if ((i = set_precision(format, i, prn)) == -1)
 		return (-1);
-	if (i < prn->size)
-		set_mod(format, prn);
+	if ((set_mod(format, i, prn)) == -1)
+		return (-1);
 	return (0);
 }
 
@@ -204,35 +198,6 @@ int print_txt(const char *format, int size)
 	}
 	return (0);
 }
-
-/*int ft_printf2(const char *format, ...)
-{
-	t_prn	*prn;
-	int		fcount;
-
-	ft_init_struct(prn);
-	va_start(prn->ap, format);
-	while ((fcount = ft_find_count(format, '%')) >= 0)
-	{
-		if(format[fcount + 1] == '%')
-		{
-			print_txt(format, fcount + 1);
-			format += fcount + 2;
-		}
-		else
-		{
-			print_txt(format, fcount);
-			format += fcount + 1;
-			parsing_type(format, prn);
-			format += prn->size + 1;
-			clear_format(prn);
-		}
-	}
-	if (*format != '\0')
-		print_txt(format, ft_find_count(format, '\0'));
-	va_end(prn->ap);
-	return (0);
-}*/
 
 int ft_printf(const char *format, ...)
 {

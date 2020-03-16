@@ -9,8 +9,8 @@ int main(void)
 
 	i = 10;
 	size = 10;
-	str = "testj";
-ft_printf("text %s %s", str, str);
+	str = "test";
+	ft_printf("text %s %hls", str, str);
 //printf("%d", i);
 //ft_printf("\nlText %% %010.105ld, %s\n", i, "rText");
 //printf("\nlText %% %010.105ld, %s\n", i, "rText");

@@ -78,5 +78,5 @@ add_executable(printf3
         srcs/print_d.c
         srcs/print_s.c
         CMakeLists.txt
-        ft_printf.h
+        includes/ft_printf.h
         main.c)
