@@ -61,7 +61,7 @@ int	find_type(const char *format)
 
 	size = 0;
 	i = 0;
-	type = "diouxXaAeEfFgGs";
+	type = "diouxXaAeEfFgGsc";
 	while(format[size] != type[i])
 	{
 		if(format[size] == '\0')
@@ -85,7 +85,7 @@ void	clear_format(t_prn *prn)
 	prn->fl_sharp = 0;
 	prn->fl_zero = 0;
 	prn->width = 0;
-	prn->precision = 0;
+	prn->precision = -1;
 	prn->mod_h = 0;
 	prn->mod_hh = 0;
 	prn->mod_l = 0;
@@ -183,6 +183,8 @@ int parsing_type(const char *format, t_prn *prn)
 		print_d(prn);
 	if (format[prn->size] == 's')
 		print_s(prn);
+	if (format[prn->size] == 'c')
+		print_c(prn);
 	return (0);
 }
 

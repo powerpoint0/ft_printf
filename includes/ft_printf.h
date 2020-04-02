@@ -27,6 +27,7 @@ typedef struct	s_prn
 int ft_printf(const char *format, ...);
 int print_txt(const char *format, int size);
 int print_s(t_prn *prn);
+int print_c(t_prn *prn);
 int print_d(t_prn *prn);
 
 #endif //FT_PRINTF_FT_PRINTF_H
