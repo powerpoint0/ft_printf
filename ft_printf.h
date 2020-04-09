@@ -3,6 +3,7 @@
 
 #include "libft.h"
 #include <stdarg.h>
+#include <stdio.h>
 
 #define B_SIZE 32
 
@@ -28,7 +29,9 @@ int ft_printf(const char *format, ...);
 int print_d(t_prn *prn);
 int print_s(t_prn *prn);
 int print_c(t_prn *prn);
+int print_p(t_prn *prn);
+int main();
 
 int print_txt(const char *format, int size);
-
+void ft_print_type(int size,int len,t_prn *prn, char *str);
 #endif //FT_PRINTF_FT_PRINTF_H

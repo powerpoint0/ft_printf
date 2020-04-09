@@ -61,7 +61,7 @@ int	find_type(const char *format)
 
 	size = 0;
 	i = 0;
-	type = "diouxXaAeEfFgGsc";
+	type = "diouxXaAeEfFgGscp";
 	while(format[size] != type[i])
 	{
 		if(format[size] == '\0')
@@ -185,6 +185,8 @@ int parsing_type(const char *format, t_prn *prn)
 		print_s(prn);
 	if (format[prn->size] == 'c')
 		print_c(prn);
+	if (format[prn->size] == 'p')
+		print_p(prn);
 	return (0);
 }
 

@@ -29,5 +29,6 @@ int print_txt(const char *format, int size);
 int print_s(t_prn *prn);
 int print_c(t_prn *prn);
 int print_d(t_prn *prn);
+int	main(int argc, char **argv);
 
 #endif //FT_PRINTF_FT_PRINTF_H
