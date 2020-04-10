@@ -4,6 +4,7 @@ project(ft_printf C)
 set(CMAKE_C_STANDARD 11)
 
 include_directories(.)
+include_directories(includes)
 include_directories(libft/includes)
 
 add_executable(ft_printf
@@ -74,5 +75,7 @@ add_executable(ft_printf
         srcs/ft_printf.c
         srcs/print_cs.c
         srcs/print_d.c
+        srcs/print_p.c
+        srcs/print_x.c
         ft_printf.h
         main.c)

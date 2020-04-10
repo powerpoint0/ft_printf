@@ -25,13 +25,15 @@ typedef struct	s_prn
 	int 		size;
 }				t_prn;
 
+int main();
 int ft_printf(const char *format, ...);
 int print_d(t_prn *prn);
 int print_s(t_prn *prn);
 int print_c(t_prn *prn);
 int print_p(t_prn *prn);
-int main();
+int print_x(t_prn *prn);
 
+void	ft_itoa16(long long int num, char *rez, int base);
 int print_txt(const char *format, int size);
 void ft_print_type(int size,int len,t_prn *prn, char *str);
 #endif //FT_PRINTF_FT_PRINTF_H

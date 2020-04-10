@@ -187,6 +187,8 @@ int parsing_type(const char *format, t_prn *prn)
 		print_c(prn);
 	if (format[prn->size] == 'p')
 		print_p(prn);
+	if (format[prn->size] == 'x')
+		print_x(prn);
 	return (0);
 }
 

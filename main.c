@@ -7,13 +7,31 @@ int main(void)
 	int		size;
 	char	*str;
 	char a = 'a';
+	int k = 7;
+char ptr[2] ={"io"};
 
 
 	i = -2147483648;
 	size = 10;
 	str = "tesst";
-	ft_printf("text %p", i);
-	printf("\ntexo %p\n", i);
+	//ft_printf("text %p", i);
+	//printf("\ntexo %p\n", i);
+
+	//ft_printf("\ntext %15p\n", i);
+	//printf("\ntexo %15p\n", i);
+
+	ft_printf("\ntext %-15p\n", str);
+	printf("\ntexo %-15p\n", str);
+	ft_printf("\ntext %-15p\n", ptr);
+	printf("\ntexo %-15p\n", ptr);
+	ft_printf("\ntext %-15p\n", a);
+	printf("\ntexo %-15p\n", a);
+
+	//ft_printf("\ntext %6p\n", i);
+	//printf("\ntexo %6p\n", i);
+	//ft_printf("text %x", k);
+	//printf("\ntexo %x\n", k);
+
 
 	/*ft_printf("text %010.3s", str);
 	printf("\ntext %010.3s\n", str);
@@ -34,12 +52,12 @@ int main(void)
 	//printf("\ntext \v%%% #-010.3s\n", str);
 	//printf("\ntext \f%%% #-010.3s\n", str);
 
-	//ft_printf("text %c", a);
-	//printf("\ntext %c\n", a);
-	//ft_printf("\ntext %10c", a);
-	//printf("\ntext %10c\n", a);
-	//ft_printf("\ntext %% \t%-10c aaa %c", a, a);
-	//printf("\ntext %% \t%-10c aaa %c\n", a, a);
+	/*ft_printf("text %c", a);
+	printf("\ntext %c\n", a);
+	ft_printf("\ntext %10c", a);
+	printf("\ntext %10c\n", a);
+	ft_printf("\ntext %% \t%-10c aaa %c", a, a);
+	printf("\ntext %% \t%-10c aaa %c\n", a, a);*/
 
 	//ft_printf("%15d", i);
 	//printf("\n%15d", i);

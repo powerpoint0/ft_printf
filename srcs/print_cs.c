@@ -24,19 +24,7 @@ void ft_print_type(int size,int len, t_prn  *prn, char *str)
 		i++;
 	}
 }
-int	print_p(t_prn *prn)
-{
-	char	str[1];
-	int		size;
-	int		len;
 
-	size = (prn->width) ? (prn->width) : 1;
-	len =1;
-	str[0] = va_arg(prn->ap, void*);
-	ft_print_type(size,len, prn, str);
-	printf("|size = %d|", size);
-	return (size);
-}
 int print_c(t_prn *prn)
 {
 	char	str[1];
@@ -45,7 +33,7 @@ int print_c(t_prn *prn)
 
 	size = (prn->width) ? (prn->width) : 1;
 	len =1;
-	str[0] = va_arg(prn->ap, char);
+	str[0] = (char)va_arg(prn->ap, int);
 	ft_print_type(size,len, prn, str);
 	printf("|size = %d|", size);
 	return (size);
