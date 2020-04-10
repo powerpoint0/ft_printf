@@ -28,15 +28,13 @@ void		ft_itoa16(long long int num, char *rez, int base)
 int		print_p(t_prn *prn)
 {
 	unsigned int		num;
-	char				str[27];
+	char				str[27] = "0x7fff";
 	int					len;
 	int					size;
 
-	ft_bzero(str, 27);
-	str[0]= '0';
-	str[1]= 'x';
-	num = va_arg(prn->ap, unsigned int);
-	ft_itoa16(num, str+2, 16);
+	ft_bzero(str+6, 27);
+	num = (unsigned int)va_arg(prn->ap, void*);
+	ft_itoa16(num, str+6, 16);
 	len = ft_strlen(str);
 	size = (len > prn->width) ? len : prn->width;
 	ft_print_type(size,len, prn, str);

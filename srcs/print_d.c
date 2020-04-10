@@ -1,6 +1,25 @@
 #include "ft_printf.h"
+/*long long int	ft_mod_llhh(long long int nbr, t_prn *prn)
+{
+	long long int	nbr;
 
-char *ft_putnbr_in_str(int n, char *str)
+	if (prn->mod_hh)
+		nbr = (unsigned char)nbr;
+	else if (prn->mod_h)
+		nbr = (unsigned short int)nbr;
+	else if (prn->mod_l)
+		nbr = (unsigned long int)nbr;
+	else if (prn->mod_ll)
+		nbr = (unsigned long long int)nbr;
+	//else if (arg->length == j)
+		//nbr = (uintmax_t)nbr;
+	//else if (arg->length == z)
+		//nbr = (size_t)nbr;
+	else
+		nbr = (unsigned int)nbr;
+	return (nbr);
+}*/
+char *ft_putnbr_in_str(long long int n, char *str)
 {
 	int i;
 	int k;

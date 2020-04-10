@@ -8,24 +8,27 @@ int main(void)
 	char	*str;
 	char a = 'a';
 	int k = 7;
-char ptr[2] ={"io"};
+	int ptr[2] ={4} ;
+
+
+//char ptr[2] ={"io"};
 
 
 	i = -2147483648;
 	size = 10;
 	str = "tesst";
-	//ft_printf("text %p", i);
-	//printf("\ntexo %p\n", i);
+	ft_printf("text %p", str);
+	printf("\ntexo %p\n", str);
 
-	//ft_printf("\ntext %15p\n", i);
-	//printf("\ntexo %15p\n", i);
+	ft_printf("\ntext %15p\n", ptr);
+	printf("\ntexo %15p\n", ptr);
 
-	ft_printf("\ntext %-15p\n", str);
-	printf("\ntexo %-15p\n", str);
-	ft_printf("\ntext %-15p\n", ptr);
-	printf("\ntexo %-15p\n", ptr);
-	ft_printf("\ntext %-15p\n", a);
-	printf("\ntexo %-15p\n", a);
+	ft_printf("\ntext %-20p\n", ptr);
+	printf("\ntexo %-20p\n", ptr);
+	//ft_printf("\ntext %-15p\n", ptr);
+	//printf("\ntexo %-15p\n", ptr);
+	//ft_printf("\ntext %-15p\n", a);
+	//printf("\ntexo %-15p\n", a);
 
 	//ft_printf("\ntext %6p\n", i);
 	//printf("\ntexo %6p\n", i);
