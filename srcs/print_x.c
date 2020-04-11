@@ -12,7 +12,7 @@ int		print_x(t_prn *prn)
 	i = 0;
 	ft_bzero(str, 27);
 	num = va_arg(prn->ap, unsigned int);
-	ft_itoa16(num, str, 16);
+	ft_itoa16(num, str, 16, prn);
 	len = ft_strlen(str);
 	if (prn->fl_sharp == 1)
 		len +=2;

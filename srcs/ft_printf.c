@@ -92,6 +92,7 @@ void	clear_format(t_prn *prn)
 	prn->mod_ll = 0;
 	prn->mod_L = 0;
 	prn->size = 0;
+	prn->sign = 0;
 }
 
 int	set_mod(const char *format, int i, t_prn *prn)
