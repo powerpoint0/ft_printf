@@ -1,4 +1,4 @@
-#include "includes/ft_printf.h"
+#include "ft_printf.h"
 #include <stdio.h>
  char	ft_next_ch( int num, int base)
 {
@@ -19,11 +19,11 @@
 		basee = base_8;
 	return (basee[num]);
 }
-void		ft_itoa16(int num, char *rez, int base, t_prn *prn)
+void		ft_itoa16(long int num, char *rez, int base, t_prn *prn)
 {
 	int		size;
-	int		tmp;
-	int n;
+	long int		tmp;
+	long int n;
 
 	size = 1;
 	tmp = num;
@@ -33,7 +33,6 @@ void		ft_itoa16(int num, char *rez, int base, t_prn *prn)
 		return;
 	}
 	prn->sign = (num >= 0)? 1: (-1);
-	//n = (num >= 0)? num : -num;
 	n = (num >= 0)? -num : num;
 	while(tmp /= base)
 		size ++;
@@ -43,6 +42,7 @@ void		ft_itoa16(int num, char *rez, int base, t_prn *prn)
 		n /= base;
 	}
 }
+
 
 int		print_p(t_prn *prn)
 {

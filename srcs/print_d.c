@@ -1,4 +1,4 @@
-#include "includes/ft_printf.h"
+#include "ft_printf.h"
 /*long long int	ft_mod_llhh(long long int nbr, t_prn *prn)
 {
 	long long int	nbr;
@@ -31,11 +31,18 @@ int ft_count_len(int len, char *str,t_prn *prn)
 	else
 		prn->precision = (prn->precision <= len)? len : prn->precision;
 	len = sign + prn->precision;
+	if (prn->fl_sharp)
+		len += 2;
 	return(len);
 }
 
 int ft_print_flags_numberType(int len, char *str, t_prn *prn)
 {
+	if (prn->fl_sharp)
+	{
+		write(1, "0", 1);
+		write(1, &prn->type, 1);
+	}
 	if (prn->fl_plus)
 		(prn->sign >=0) ?(write(1, "+",1)) :(write(1, "-",1));
 	else
@@ -75,6 +82,7 @@ int print_d(t_prn *prn)
 
 	ft_bzero(str, 27);
 	ft_itoa16((va_arg(prn->ap, int)) , str, 10, prn);
+	//prn->sign = (num >= 0)? 1: (-1);
 	len = ft_count_len(ft_strlen(str), str,prn);
 	size = (prn->width > len) ? prn->width : len;
 	ft_print_number(len, size, str, prn);

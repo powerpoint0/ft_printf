@@ -1,20 +1,21 @@
-#include "includes/ft_printf.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 int main(void)
 {
-	unsigned int		i;
+	int		i;
 	int		size;
 	char	*str;
 	char a = 'a';
-	int k = 7;
+	int k = 777;
+	//float i = 3.999;
 	int ptr[2] ={4} ;
 
 
 //char ptr[2] ={"io"};
 
 	//i = 0;
-	i = -2147483647;
+	i = -2147483648;
 	size = 10;
 	str = "tesst";
 	//ft_printf("text %p", &str);
@@ -32,16 +33,16 @@ int main(void)
 
 	//ft_printf("\ntext %6p\n", i);
 	//printf("\ntexo %6p\n", i);
-	//ft_printf("text %#x", -7);
-	//printf("\ntexo %#x\n", -7);
+	ft_printf("text %-15.40o", k);
+	printf("\ntexo %-15.40o\n", k);
 	//printf("\ntexo %#X\n", k);
 	//printf("\ntexo %X\n", k);
 
-	//ft_printf("text %010.103x", i);
-	//printf("\ntexo %010.103x\n", i);
+	ft_printf("text %20.0o", i);
+	printf("\ntexo %20.0o\n", i);
 
-	ft_printf("text %015.3x", k);
-	printf("\ntexo %015.3x\n", k);
+	//ft_printf("text % +30f",0);
+	//printf("\ntexo % +30f\n", 0);
 	//ft_printf("text %-+15.12d", i);
 	//printf("\ntexo %-+15.12d\n", i);
 

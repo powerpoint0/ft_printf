@@ -24,7 +24,15 @@ typedef struct	s_prn
 	int 		mod_L;
 	int 		size;
 	int			sign;
+	int 		neg;
+	char 		type;
 }				t_prn;
+
+union 			test_nan_union
+{
+	double 		d;
+	uintmax_t 	l;
+}				test_nan;
 
 int				main();
 int		 		ft_printf(const char *format, ...);
@@ -33,13 +41,26 @@ int 			print_s(t_prn *prn);
 int 			print_c(t_prn *prn);
 int 			print_p(t_prn *prn);
 int 			print_x(t_prn *prn);
+int				print_o(t_prn *prn);
+int 			print_f(t_prn *prn);
 
 int 			print_txt(const char *format, int size);
 void 			ft_print_type_csp(int size,int len,t_prn *prn, char *str);
 
-void			ft_itoa16( int num, char *rez, int base, t_prn *prn);
+void			ft_itoa16(long int num, char *rez, int base, t_prn *prn);
 char			ft_next_ch( int num, int base);
 void 			ft_print_number(int len, int size,char *str, t_prn *prn);
 int				ft_print_flags_numberType(int len, char *str, t_prn *prn);
 int				ft_count_len(int len, char *str,t_prn *prn);
+
+long double		get_nbr(t_prn *prn);
+void			cut_str(char *str);
+int				print_format(t_prn *prn, char *str);
+void			add_exp(char *str, int degree, t_prn *prn);
+void			ft_itoa_unsigned(int num, char *str, int precision);
+long long int	dt(int degree);
+int				ft_islower(int ch);
+int				iabs(int a);
+double			dabs(double a);
+
 #endif //FT_PRINTF_FT_PRINTF_H
