@@ -19,37 +19,42 @@
 		nbr = (unsigned int)nbr;
 	return (nbr);
 }*/
-void ft_ready_number(char *rstr,char *str, t_prn *prn)
+void ft_ready_number(char *rstr,int len, char *str, t_prn *prn)
 {
-	ft_bzero(rstr, 27);
-	//znaki + -
-	//probel?
-	//00precision
-	//copy number
+	int i;
+
+	i = 0;
+	if (prn->fl_plus)
+		(prn->sign >=0) ?(rstr[i++] = '+') :(rstr[i++] = '-');
+	else
+		{
+			if(prn->sign < 0)
+				rstr[i++] = '-';
+			if ((prn->sign >= 0)&& prn->fl_space)
+				(rstr[i++] = ' ');
+		}
+	if((prn->precision ==-1) && (prn->width > len) && prn->fl_zero)
+		prn->precision = prn->width -i;
+	else
+		prn->precision = (prn->precision <= len)? len : prn->precision;
+	while (len++ != prn->precision)
+		rstr[i++] = '0';
+	ft_strcpy(&rstr[i], str);
 }
 int print_d(t_prn *prn)
 {
 	int len;
 	int size;
 	char str[27];
-	char readystr[27];
+	char rstr[27];
 
 	ft_bzero(str, 27);
+	ft_bzero(rstr, 27);
 	ft_itoa16((va_arg(prn->ap, int)) , str, 10, prn);
 	len = ft_strlen(str);
-	//ft_ready_number(readystr, *str, *prn);
-	if (prn->width > len)
-	{
-		size = prn->width;
-		len = (prn->precision>len-1)? (prn->precision+1): len;
-	}
-	else if (prn->precision > len )
-	{
-		size = prn->precision;
-		len = prn->precision;
-	}
-	else size = len;
-	ft_print_type(size, len, prn, str);
-	//printf("\n%d", len);
+	ft_ready_number(rstr,len, str, prn);
+	len = ft_strlen(rstr);
+	size = (prn->width > len) ? prn->width : len;
+	ft_print_type(size, len, prn, rstr);
 	return (0);
 }

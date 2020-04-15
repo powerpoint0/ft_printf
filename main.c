@@ -13,8 +13,8 @@ int main(void)
 
 //char ptr[2] ={"io"};
 
-
-	i = -2147483647;
+	//i = 0;
+	i = 2147483647;
 	size = 10;
 	str = "tesst";
 	//ft_printf("text %p", &str);
@@ -33,21 +33,23 @@ int main(void)
 	//ft_printf("\ntext %6p\n", i);
 	//printf("\ntexo %6p\n", i);
 	//ft_printf("text %x", k);
-	printf("\ntexo %#x\n", k);
-	printf("\ntexo %x\n", k);
-	printf("\ntexo %#X\n", k);
-	printf("\ntexo %X\n", k);
+	//printf("\ntexo %#x\n", k);
+	//printf("\ntexo %x\n", k);
+	//printf("\ntexo %#X\n", k);
+	//printf("\ntexo %X\n", k);
 
-	//ft_printf("text %010.3d", i);
-	//printf("\ntexo %010.15d\n", i);
+	ft_printf("text %010.3d", i);
+	printf("\ntexo %010.3d\n", i);
 
-	ft_printf("text %15.3d", i);
-	printf("\ntexo %15.3d\n", i);
-	//ft_printf("text %15.12d", i);
-	//printf("\ntexo %-15.12d\n", i);
+	//ft_printf("text %015.3d", i);
+	//printf("\ntexo %015.3d\n", i);
+	ft_printf("text %-+15.12d", i);
+	printf("\ntexo %-+15.12d\n", i);
 
-	//ft_printf("text %08.11d", i);
-	//printf("\ntexo %08.11d\n",i);
+	ft_printf("text %020d", i);
+	printf("\ntexo %020d\n",i);
+	ft_printf("text %20d", i);
+	printf("\ntexo %20d\n",i);
 
 	//ft_printf("\ntext\n %% \taaa\r\v\f % #-010.3s aaa", str);
 	//printf("\ntext\n %% \taaa\r\v\f % #-010.3s aaa", str);
