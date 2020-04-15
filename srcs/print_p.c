@@ -1,7 +1,6 @@
 #include "includes/ft_printf.h"
 #include <stdio.h>
-
-static char	ft_next_ch( int num, int base)
+ char	ft_next_ch( int num, int base)
 {
 	const char	*base_16;
 	const char	*base_10;
@@ -24,6 +23,7 @@ void		ft_itoa16(int num, char *rez, int base, t_prn *prn)
 {
 	int		size;
 	int		tmp;
+	int n;
 
 	size = 1;
 	tmp = num;
@@ -33,13 +33,14 @@ void		ft_itoa16(int num, char *rez, int base, t_prn *prn)
 		return;
 	}
 	prn->sign = (num >= 0)? 1: (-1);
-	num *= (num >= 0)? (-1) : 1;
+	//n = (num >= 0)? num : -num;
+	n = (num >= 0)? -num : num;
 	while(tmp /= base)
 		size ++;
 	while(size--)
 	{
-		rez[size] = ft_next_ch((-1)*(num % base), base);
-		num /= base;
+		rez[size] = ft_next_ch((-1)*(n % base), base);
+		n /= base;
 	}
 }
 

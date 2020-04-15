@@ -3,7 +3,7 @@
 
 int main(void)
 {
-	int		i;
+	unsigned int		i;
 	int		size;
 	char	*str;
 	char a = 'a';
@@ -14,7 +14,7 @@ int main(void)
 //char ptr[2] ={"io"};
 
 	//i = 0;
-	i = 2147483647;
+	i = -2147483647;
 	size = 10;
 	str = "tesst";
 	//ft_printf("text %p", &str);
@@ -32,17 +32,16 @@ int main(void)
 
 	//ft_printf("\ntext %6p\n", i);
 	//printf("\ntexo %6p\n", i);
-	//ft_printf("text %x", k);
-	//printf("\ntexo %#x\n", k);
-	//printf("\ntexo %x\n", k);
+	//ft_printf("text %#x", -7);
+	//printf("\ntexo %#x\n", -7);
 	//printf("\ntexo %#X\n", k);
 	//printf("\ntexo %X\n", k);
 
-	ft_printf("text %010.103d", i);
-	printf("\ntexo %010.103d\n", i);
+	//ft_printf("text %010.103x", i);
+	//printf("\ntexo %010.103x\n", i);
 
-	//ft_printf("text %015.3d", i);
-	//printf("\ntexo %015.3d\n", i);
+	ft_printf("text %015.3x", k);
+	printf("\ntexo %015.3x\n", k);
 	//ft_printf("text %-+15.12d", i);
 	//printf("\ntexo %-+15.12d\n", i);
 

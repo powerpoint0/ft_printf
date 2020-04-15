@@ -34,8 +34,12 @@ int 			print_c(t_prn *prn);
 int 			print_p(t_prn *prn);
 int 			print_x(t_prn *prn);
 
-void			ft_itoa16( int num, char *rez, int base, t_prn *prn);
 int 			print_txt(const char *format, int size);
 void 			ft_print_type_csp(int size,int len,t_prn *prn, char *str);
+
+void			ft_itoa16( int num, char *rez, int base, t_prn *prn);
+char			ft_next_ch( int num, int base);
 void 			ft_print_number(int len, int size,char *str, t_prn *prn);
+int				ft_print_flags_numberType(int len, char *str, t_prn *prn);
+int				ft_count_len(int len, char *str,t_prn *prn);
 #endif //FT_PRINTF_FT_PRINTF_H
