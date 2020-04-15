@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "includes/ft_printf.h"
 #include <stdio.h>
 
 static char	ft_next_ch( int num, int base)
@@ -55,6 +55,6 @@ int		print_p(t_prn *prn)
 	ft_itoa16(num, str+6, 16, prn);
 	len = ft_strlen(str);
 	size = (len > prn->width) ? len : prn->width;
-	ft_print_type(size,len, prn, str);
+	ft_print_type_csp(size,len, prn, str);
 	return (size);
 }

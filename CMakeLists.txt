@@ -77,5 +77,5 @@ add_executable(ft_printf
         srcs/print_d.c
         srcs/print_p.c
         srcs/print_x.c
-        ft_printf.h
+        includes/ft_printf.h
         main.c)
