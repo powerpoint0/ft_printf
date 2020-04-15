@@ -1,24 +1,26 @@
 #include "ft_printf.h"
-/*long long int	ft_mod_llhh(long long int nbr, t_prn *prn)
-{
-	long long int	nbr;
 
+intmax_t	ft_get_signed_mod_llhh(t_prn *prn)
+{
+	intmax_t nbr;
+
+ 	nbr = va_arg(prn->ap, intmax_t);
 	if (prn->mod_hh)
-		nbr = (unsigned char)nbr;
+		nbr = (char)nbr;
 	else if (prn->mod_h)
-		nbr = (unsigned short int)nbr;
+		nbr = (short int)nbr;
 	else if (prn->mod_l)
-		nbr = (unsigned long int)nbr;
+		nbr = (long int)nbr;
 	else if (prn->mod_ll)
-		nbr = (unsigned long long int)nbr;
+		nbr = (long long int)nbr;
 	//else if (arg->length == j)
-		//nbr = (uintmax_t)nbr;
+		//nbr = (intmax_t)nbr;
 	//else if (arg->length == z)
 		//nbr = (size_t)nbr;
 	else
-		nbr = (unsigned int)nbr;
+		nbr = (int)nbr;
 	return (nbr);
-}*/
+}
 
 int ft_count_len(int len, char *str,t_prn *prn)
 {
@@ -79,15 +81,15 @@ void ft_print_number(int len, int size,char *str, t_prn *prn)
 	}
 }
 
-int print_d(t_prn *prn)
+int print_di(t_prn *prn)
 {
 	int len;
 	int size;
 	char str[27];
-	int num;
+	intmax_t num;
 
 	ft_bzero(str, 27);
-	num = va_arg(prn->ap, int);
+	num = ft_get_signed_mod_llhh(prn);
 	ft_itoa16( num, str, 10, "0123456789");
 	prn->sign = (num >= 0)? 1: (-1);
 	len = ft_count_len(ft_strlen(str), str,prn);

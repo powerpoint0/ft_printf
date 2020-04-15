@@ -4,6 +4,7 @@
 #include "libft.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdint.h>
 
 #define B_SIZE 32
 
@@ -36,7 +37,7 @@ union 			test_nan_union
 
 int				main();
 int		 		ft_printf(const char *format, ...);
-int 			print_d(t_prn *prn);
+int 			print_di(t_prn *prn);
 int 			print_s(t_prn *prn);
 int 			print_c(t_prn *prn);
 int 			print_p(t_prn *prn);
@@ -46,7 +47,7 @@ int 			print_f(t_prn *prn);
 int 			print_txt(const char *format, int size);
 void 			ft_print_type_csp(int size,int len,t_prn *prn, char *str);
 
-void			ft_itoa16(long int num, char *rez, int base, char *basee);
+void			ft_itoa16(intmax_t num, char *rez, int base, char *basee);
 void 			ft_print_number(int len, int size,char *str, t_prn *prn);
 void			ft_print_flags_numberType(int len, char *str, t_prn *prn);
 int				ft_count_len(int len, char *str,t_prn *prn);

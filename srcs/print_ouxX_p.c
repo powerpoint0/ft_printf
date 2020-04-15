@@ -1,11 +1,34 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-void		ft_itoa16(long int num, char *rez, int base, char *basee)
+uintmax_t	ft_get_unsigned_mod_llhh(t_prn *prn)
+{
+	uintmax_t nbr;
+
+ 	nbr = va_arg(prn->ap, uintmax_t);
+	if (prn->mod_hh)
+		nbr = (unsigned char)nbr;
+	else if (prn->mod_h)
+		nbr = (unsigned short int)nbr;
+	else if (prn->mod_l)
+		nbr = (unsigned long int)nbr;
+	else if (prn->mod_ll)
+		nbr = (unsigned long long int)nbr;
+	//else if (arg->length == j)
+		//nbr = (uintmax_t)nbr;
+	//else if (arg->length == z)
+		//nbr = (size_t)nbr;
+	else
+		nbr = (unsigned int)nbr;
+	return (nbr);
+}
+
+
+void		ft_itoa16(intmax_t num, char *rez, int base, char *basee)
 {
 	int			size;
-	long int	tmp;
-	long int	n;
+	intmax_t	tmp;
+	intmax_t	n;
 
 	size = 1;
 	tmp = num;
@@ -45,10 +68,10 @@ int		print_ouxX(t_prn *prn)
 	int len;
 	int size;
 	char str[27];
-	long int num;
+	uintmax_t num;
 
 	ft_bzero(str, 27);
-	num = (long)va_arg(prn->ap, unsigned int);
+	num = ft_get_unsigned_mod_llhh(prn);
 	if (prn->type == 'o')
 		ft_itoa16( num, str, 8, "01234567");
 	else if (prn->type == 'u')

@@ -3,50 +3,51 @@
 
 int main(void)
 {
-	//int		i;
+	long int		k;
 	int		size;
 	char	*str;
 	char a = 'a';
-	int i = -777;
+	unsigned long long int i = 4294967295;
 	//float i = 3.999;
 	int ptr[2] ={4} ;
 
 	//i = 0;
-	//i = -2147483648;
+	k = 2147483649;
 	size = 10;
 	str = "tesst";
+	i = i*2 ;
 	//ft_printf("text %p", &str);
 	//printf("\ntexo %p\n", &str);
 
-	//ft_printf("\ntext %15p\n", &ptr);
-	//printf("\ntexo %15p\n", &ptr);
+	ft_printf("\ntext %15p\n", &ptr);
+	printf("\ntexo %15p\n", &ptr);
 
-	//ft_printf("\ntext %-20p\n", &ptr);
-	//printf("\ntexo %-20p\n", &ptr);
-	//ft_printf("\ntext %-15p\n", ptr);
-	//printf("\ntexo %-15p\n", ptr);
-	//ft_printf("\ntext %-15p\n", &a);
-	//printf("\ntexo %-15p\n", &a);
+	ft_printf("\ntext %-20p\n", &ptr);
+	printf("\ntexo %-20p\n", &ptr);
+	ft_printf("\ntext %-15p\n", ptr);
+	printf("\ntexo %-15p\n", ptr);
+	ft_printf("\ntext %-15p\n", &a);
+	printf("\ntexo %-15p\n", &a);
 
 	//ft_printf("\ntext %6s\n", str);
 	//printf("\ntexo %6s\n", str);
-	//ft_printf("text %-15.40s", str);
-	//printf("\ntexo %-15.40s\n", str);
-	//ft_printf("\ntext %d\n", k);
-	//printf("\ntexo %i\n", k);
+	//ft_printf("text %-15.40hx", i);
+	//printf("\ntexo %-15.40hx\n", i);
+	//ft_printf("\ntext %llx\n", i);
+	//printf("\ntexo %llx\n", i);
 
-	ft_printf("text %20.0o", i);
-	printf("\ntexo %20.0o\n", i);
+	//ft_printf("text %20.0llX", i);
+	//printf("\ntexo %20.0llX\n", i);
 
 	//ft_printf("text % +30f",0);
 	//printf("\ntexo % +30f\n", 0);
-	ft_printf("text %#020x", i);   //c x
-	printf("\ntexo %#020x\n", i);
+	//ft_printf("text %#020x", i);   //c x
+	//printf("\ntexo %#020x\n", i);
 
-	ft_printf("text %020X", i);
-	printf("\ntexo %020X\n",i);
-	ft_printf("text %20u", i);
-	printf("\ntexo %20u\n",i);
+	//ft_printf("text %020X", i);
+	//printf("\ntexo %020X\n",i);
+	ft_printf("text %20llx", i);
+	printf("\ntexo %20llx\n",i);
 
 	//ft_printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
 	//printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
