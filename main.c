@@ -24,8 +24,8 @@ int main(void)
 	//ft_printf("\ntext %15p\n", &ptr);
 	//printf("\ntexo %15p\n", &ptr);
 
-	//ft_printf("\ntext %-20p\n", ptr);
-	//printf("\ntexo %-20p\n", ptr);
+	//ft_printf("\ntext %-20p\n", &ptr);
+	//printf("\ntexo %-20p\n", &ptr);
 	//ft_printf("\ntext %-15p\n", ptr);
 	//printf("\ntexo %-15p\n", ptr);
 	//ft_printf("\ntext %-15p\n", &a);
@@ -33,23 +33,23 @@ int main(void)
 
 	//ft_printf("\ntext %6p\n", i);
 	//printf("\ntexo %6p\n", i);
-	ft_printf("text %-15.40o", k);
-	printf("\ntexo %-15.40o\n", k);
-	//printf("\ntexo %#X\n", k);
-	//printf("\ntexo %X\n", k);
+	ft_printf("text %#-15.40x", k);
+	printf("\ntexo %#-15.40x\n", k);
+	ft_printf("\ntext %#x\n", k);
+	printf("\ntexo %#x\n", k);
 
-	ft_printf("text %20.0o", i);
-	printf("\ntexo %20.0o\n", i);
+	//ft_printf("text %20.0o", i);
+	//printf("\ntexo %20.0o\n", i);
 
 	//ft_printf("text % +30f",0);
 	//printf("\ntexo % +30f\n", 0);
-	//ft_printf("text %-+15.12d", i);
-	//printf("\ntexo %-+15.12d\n", i);
+	ft_printf("text %#020o", i);   //c x
+	printf("\ntexo %#020o\n", i);
 
 	//ft_printf("text %020d", i);
 	//printf("\ntexo %020d\n",i);
-	//ft_printf("text %20d", i);
-	//printf("\ntexo %20d\n",i);
+	ft_printf("text %#20X", i);
+	printf("\ntexo %#20X\n",i);
 
 	//ft_printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
 	//printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);

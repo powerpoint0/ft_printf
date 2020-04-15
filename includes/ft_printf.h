@@ -40,14 +40,14 @@ int 			print_d(t_prn *prn);
 int 			print_s(t_prn *prn);
 int 			print_c(t_prn *prn);
 int 			print_p(t_prn *prn);
-int 			print_x(t_prn *prn);
-int				print_o(t_prn *prn);
+int 			print_xX(t_prn *prn);
+int				print_ou(t_prn *prn);
 int 			print_f(t_prn *prn);
 
 int 			print_txt(const char *format, int size);
 void 			ft_print_type_csp(int size,int len,t_prn *prn, char *str);
 
-void			ft_itoa16(long int num, char *rez, int base, t_prn *prn);
+void			ft_itoa16(long int num, char *rez, int base, char *basee);
 char			ft_next_ch( int num, int base);
 void 			ft_print_number(int len, int size,char *str, t_prn *prn);
 int				ft_print_flags_numberType(int len, char *str, t_prn *prn);
