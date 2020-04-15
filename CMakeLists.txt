@@ -77,7 +77,6 @@ add_executable(ft_printf
         srcs/print_d.c
         srcs/print_f.c
         srcs/print_f_func.c
-        srcs/print_p.c
-        srcs/print_xXou.c
+        srcs/print_ouxX_p.c
         srcs/utils.c
         main.c)

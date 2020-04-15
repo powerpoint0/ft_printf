@@ -40,8 +40,7 @@ int 			print_d(t_prn *prn);
 int 			print_s(t_prn *prn);
 int 			print_c(t_prn *prn);
 int 			print_p(t_prn *prn);
-int 			print_xX(t_prn *prn);
-int				print_ou(t_prn *prn);
+int 			print_ouxX(t_prn *prn);
 int 			print_f(t_prn *prn);
 
 int 			print_txt(const char *format, int size);

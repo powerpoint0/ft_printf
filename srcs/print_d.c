@@ -19,6 +19,7 @@
 		nbr = (unsigned int)nbr;
 	return (nbr);
 }*/
+
 int ft_count_len(int len, char *str,t_prn *prn)
 {
 	int sign;
@@ -53,12 +54,12 @@ void ft_print_flags_numberType(int len, char *str, t_prn *prn)
 	else
 		{
 			if(prn->sign < 0)
-				(write(1, "-",1));
+				write(1, "-",1);
 			if ((prn->sign >= 0)&& prn->fl_space)
-				(write(1, " ",1));
+				write(1, " ",1);
 		}
 	while (len++ != prn->precision)
-		(write(1, "0", 1));
+		write(1, "0", 1);
 	ft_putstr(str);
 }
 

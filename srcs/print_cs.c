@@ -36,16 +36,14 @@ int print_s(t_prn *prn)
 	int		size;
 
 	str = va_arg(prn->ap, char*);
-	len = ft_strlen(str);
-	if(prn->precision > len || prn->precision == -1)
-		prn->precision = len;
+	if(prn->precision > (ft_strlen(str)) || prn->precision == -1)
+		prn->precision = ft_strlen(str);
 	len = prn->precision;
+	size = ft_strlen(str);
 	if (prn->width)
 		size = prn->width;
 	else if (prn->precision >= 0 )
 		size = prn->precision;
-	else
-		size = ft_strlen(str);
 	ft_print_type_csp(size, len, prn, str);
 	return (size);
 }

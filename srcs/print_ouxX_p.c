@@ -24,7 +24,6 @@ void		ft_itoa16(long int num, char *rez, int base, char *basee)
 	}
 }
 
-
 int		print_p(t_prn *prn)
 {
 	unsigned int		num;
@@ -39,4 +38,27 @@ int		print_p(t_prn *prn)
 	size = (len > prn->width) ? len : prn->width;
 	ft_print_type_csp(size,len, prn, str);
 	return (size);
+}
+
+int		print_ouxX(t_prn *prn)
+{
+	int len;
+	int size;
+	char str[27];
+	long int num;
+
+	ft_bzero(str, 27);
+	num = (long)va_arg(prn->ap, unsigned int);
+	if (prn->type == 'o')
+		ft_itoa16( num, str, 8, "01234567");
+	else if (prn->type == 'u')
+		ft_itoa16( num, str, 10, "0123456789");
+	else if (prn->type == 'x')
+		ft_itoa16(num, str, 16, "0123456789abcdef");
+	else if (prn->type == 'X')
+		ft_itoa16(num, str, 16, "0123456789ABCDEF");
+	len = ft_count_len(ft_strlen(str), str,prn);
+	size = (prn->width > len) ? prn->width : len;
+	ft_print_number(len, size, str, prn);
+	return (0);
 }
