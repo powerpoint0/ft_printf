@@ -22,35 +22,31 @@
 int ft_count_len(int len, char *str,t_prn *prn)
 {
 	int sign;
-	int sharp;
 
 	if (prn->sign == -1 || prn->fl_space || prn->fl_plus)
 		sign = 1;
 	else sign = 0;
-
+	if (prn->fl_sharp)
+	{
+		sign += ((len <= prn->precision) && (prn->type == 'o')) ? 1 : 0;
+		sign += ((prn->type == 'x' || (prn->type == 'X'))) ? 2 : 0;
+	}
 	if((prn->precision ==-1) && (prn->width > len) && prn->fl_zero)
 		prn->precision = prn->width -sign;
 	else
 		prn->precision = (prn->precision <= len)? len : prn->precision;
-
-	if (prn->fl_sharp)
-	{
-		sign += ((len == prn->precision) && (prn->type == 'o')) ? 1 : 0;          //??
-		sign += ((prn->type == 'x' || (prn->type == 'X'))) ? 2 : 0;
-	}
-
 	len = sign + prn->precision;
 	return(len);
 }
 
-int ft_print_flags_numberType(int len, char *str, t_prn *prn)
+void ft_print_flags_numberType(int len, char *str, t_prn *prn)
 {
 	if (prn->fl_sharp)
 	{
 		if (((len == prn->precision) && (prn->type == 'o')) || (prn->type == 'x')|| (prn->type == 'X'))
 			write(1, "0", 1);
 		if (prn->type == 'x' || (prn->type == 'X'))
-			write(1, &prn->type, 1);               //len += 2;
+			write(1, &prn->type, 1);
 	}
 	if (prn->fl_plus)
 		(prn->sign >=0) ?(write(1, "+",1)) :(write(1, "-",1));
@@ -64,7 +60,6 @@ int ft_print_flags_numberType(int len, char *str, t_prn *prn)
 	while (len++ != prn->precision)
 		(write(1, "0", 1));
 	ft_putstr(str);
-	return(0);
 }
 
 void ft_print_number(int len, int size,char *str, t_prn *prn)

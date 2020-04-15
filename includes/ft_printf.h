@@ -48,9 +48,8 @@ int 			print_txt(const char *format, int size);
 void 			ft_print_type_csp(int size,int len,t_prn *prn, char *str);
 
 void			ft_itoa16(long int num, char *rez, int base, char *basee);
-char			ft_next_ch( int num, int base);
 void 			ft_print_number(int len, int size,char *str, t_prn *prn);
-int				ft_print_flags_numberType(int len, char *str, t_prn *prn);
+void			ft_print_flags_numberType(int len, char *str, t_prn *prn);
 int				ft_count_len(int len, char *str,t_prn *prn);
 
 long double		get_nbr(t_prn *prn);

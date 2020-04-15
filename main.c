@@ -43,8 +43,8 @@ int main(void)
 
 	//ft_printf("text % +30f",0);
 	//printf("\ntexo % +30f\n", 0);
-	ft_printf("text %#020o", i);   //c x
-	printf("\ntexo %#020o\n", i);
+	ft_printf("text %#020x", i);   //c x
+	printf("\ntexo %#020x\n", i);
 
 	//ft_printf("text %020d", i);
 	//printf("\ntexo %020d\n",i);
