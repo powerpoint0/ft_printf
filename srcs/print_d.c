@@ -47,22 +47,22 @@ void ft_print_flags_numberType(int len, char *str, t_prn *prn)
 	if (prn->fl_sharp)
 	{
 		if (((len == prn->precision) && (prn->type == 'o')) || (prn->type == 'x')|| (prn->type == 'X'))
-			write(1, "0", 1);
+			write(prn->fd, "0", 1);
 		if (prn->type == 'x' || (prn->type == 'X'))
-			write(1, &prn->type, 1);
+			write(prn->fd, &prn->type, 1);
 	}
 	if (prn->fl_plus)
-		(prn->sign >=0) ?(write(1, "+",1)) :(write(1, "-",1));
+		(prn->sign >=0) ?(write(prn->fd, "+",1)) :(write(prn->fd, "-",1));
 	else
 		{
 			if(prn->sign < 0)
-				write(1, "-",1);
+				write(prn->fd, "-",1);
 			if ((prn->sign >= 0)&& prn->fl_space)
-				write(1, " ",1);
+				write(prn->fd, " ",1);
 		}
 	while (len++ != prn->precision)
-		write(1, "0", 1);
-	ft_putstr(str);
+		write(prn->fd, "0", 1);
+	ft_putstr_fd(str, prn->fd);
 }
 
 void ft_print_number(int len, int size,char *str, t_prn *prn)
@@ -71,12 +71,12 @@ void ft_print_number(int len, int size,char *str, t_prn *prn)
 	{
 		ft_print_flags_numberType(ft_strlen(str), str, prn);
 		while (len++ < size)
-			write(1, " ", 1);
+			write(prn->fd, " ", 1);
 	}
 	else
 	{
 		while (size - len++)
-			write(1, " ", 1);
+			write(prn->fd, " ", 1);
 		ft_print_flags_numberType(ft_strlen(str), str, prn);
 	}
 }

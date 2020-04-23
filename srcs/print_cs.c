@@ -9,9 +9,9 @@ void ft_print_type_csp(int size,int len, t_prn  *prn, char *str)
 	while(i < size)
 	 {
 		if (prn->fl_minus == 0)
-			(i < (size - len)) ? (write(1, " ", 1)) : (write(1, &str[i - (size - len)], 1));
+			(i < (size - len)) ? (write(prn->fd, " ", 1)) : (write(prn->fd, &str[i - (size - len)], 1));
 		if (prn->fl_minus == 1)
-			(i < len) ? write(1, &str[i], 1) : write(1, " ", 1);
+			(i < len) ? write(prn->fd, &str[i], 1) : write(prn->fd, " ", 1);
 		i++;
 	}
 }

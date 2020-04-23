@@ -1,43 +1,48 @@
 #include "ft_printf.h"
 #include <stdio.h>
+#include <fcntl.h>
 
-int main(void)
+int main(int argc, char **argv)
 {
 	long int		k;
 	int		size;
 	char	*str;
+	//char *filename;
 	char a = 'a';
 	unsigned long long int i = 4294967295;
 	//float i = 3.999;
 	int ptr[2] ={4} ;
 
 	//i = 0;
-	k = 2147483649;
+	k = 214;
 	size = 10;
 	str = "tesst";
-	i = i*2 ;
+	i = i*3 ;
+	int fd;
+
 	//ft_printf("text %p", &str);
 	//printf("\ntexo %p\n", &str);
 
-	ft_printf("\ntext %15p\n", &ptr);
-	printf("\ntexo %15p\n", &ptr);
+	//ft_printf("\ntext %15p\n", &ptr);
+	//printf("\ntexo %15p\n", &ptr);
 
-	ft_printf("\ntext %-20p\n", &ptr);
-	printf("\ntexo %-20p\n", &ptr);
-	ft_printf("\ntext %-15p\n", ptr);
-	printf("\ntexo %-15p\n", ptr);
-	ft_printf("\ntext %-15p\n", &a);
-	printf("\ntexo %-15p\n", &a);
+	//ft_printf("\ntext %-20p\n", &ptr);
+	//printf("\ntexo %-20p\n", &ptr);
+	//ft_printf("\ntext %-15p\n", ptr);
+	//printf("\ntexo %-15p\n", ptr);
+	//ft_printf("\ntext %-15p\n", &a);
+	//printf("\ntexo %-15p\n", &a);
 
 	//ft_printf("\ntext %6s\n", str);
 	//printf("\ntexo %6s\n", str);
-	//ft_printf("text %-15.40hx", i);
-	//printf("\ntexo %-15.40hx\n", i);
-	//ft_printf("\ntext %llx\n", i);
-	//printf("\ntexo %llx\n", i);
+	//fd = open (argv[1], O_WRONLY | O_CREAT , 0600);
+	ft_printf("text %>-*.*x",1, 15, 40, i);
+	printf("\ntexo %-*.*x\n", 15, 40, i);
+	//ft_printf("\ntext %llo\n", k);
+	//printf("\ntexo %llo\n", k);
 
-	//ft_printf("text %20.0llX", i);
-	//printf("\ntexo %20.0llX\n", i);
+	//ft_printf("text %20.0llX", k);
+	//printf("\ntexo %20.0llX\n", k);
 
 	//ft_printf("text % +30f",0);
 	//printf("\ntexo % +30f\n", 0);
@@ -46,9 +51,10 @@ int main(void)
 
 	//ft_printf("text %020X", i);
 	//printf("\ntexo %020X\n",i);
-	ft_printf("text %20llx", i);
-	printf("\ntexo %20llx\n",i);
+	ft_printf("text %>*c",1, 20, a);
+	printf("\ntexo %*c\n", 20,a);
 
+	printf("le fichier {cyan} %s {eoc} contient : {red} %s {eoc}", argv[1], str );
 	//ft_printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
 	//printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
 	//printf("\ntext\t %%% #-010.3s\n", str);
@@ -73,5 +79,6 @@ int main(void)
 //ft_printf("\nlText %% %10s, %d\n", "rText", i);
 //printf("\nlText %% %10s, %d\n", "rText", i);
 //printf("%01.5ld\n", i);
+//close(fd);
 return (0);
 }
