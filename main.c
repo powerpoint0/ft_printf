@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
+
 int main(int argc, char **argv)
 {
 	long int		k;
@@ -20,6 +21,7 @@ int main(int argc, char **argv)
 	i = i*3 ;
 	int fd;
 
+
 	//ft_printf("text %p", &str);
 	//printf("\ntexo %p\n", &str);
 
@@ -36,8 +38,8 @@ int main(int argc, char **argv)
 	//ft_printf("\ntext %6s\n", str);
 	//printf("\ntexo %6s\n", str);
 	//fd = open (argv[1], O_WRONLY | O_CREAT , 0600);
-	ft_printf("text %>-*.*x",1, 15, 40, i);
-	printf("\ntexo %-*.*x\n", 15, 40, i);
+	ft_printf(MAGENTA"text %>-*.*x"END,1, 15, 40, i);
+	printf(BLUE"\ntexo %-*.*x"END"\n", 15, 40, i);
 	//ft_printf("\ntext %llo\n", k);
 	//printf("\ntexo %llo\n", k);
 
@@ -51,10 +53,10 @@ int main(int argc, char **argv)
 
 	//ft_printf("text %020X", i);
 	//printf("\ntexo %020X\n",i);
-	ft_printf("text %>*c",1, 20, a);
-	printf("\ntexo %*c\n", 20,a);
+	ft_printf("text "RED"%>*s"END,1, 20, str);
+	printf("\ntexo "CYAN"%*s\n"END, 20,str);
 
-	printf("le fichier {cyan} %s {eoc} contient : {red} %s {eoc}", argv[1], str );
+	printf("le fichier "YELLOW" %s "END" contient : "WHITE" %s"END, argv[1], str );
 	//ft_printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
 	//printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
 	//printf("\ntext\t %%% #-010.3s\n", str);
