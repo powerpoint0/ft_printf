@@ -35,13 +35,17 @@ int print_s(t_prn *prn)
 	char	*str;
 	int		size;
 
-	str = va_arg(prn->ap, char*);
+	if(!(str = va_arg(prn->ap, char*)))
+	{
+		write(prn->fd, "(null)",6);
+		return (-1);
+	}
 	if(prn->precision > (ft_strlen(str)) || prn->precision == -1)
 		prn->precision = ft_strlen(str);
 	len = prn->precision;
 	size = ft_strlen(str);
-	if (prn->width)
-		size = prn->width;
+	if (prn->width )
+		size = (prn->width > prn->precision) ? prn->width : prn->precision;
 	else if (prn->precision >= 0 )
 		size = prn->precision;
 	ft_print_type_csp(size, len, prn, str);

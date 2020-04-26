@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 	int		size;
 	char	*str = NULL;
 	//char *filename;
-	char a = 'a';
+	char a ;
 	long long int i = 95588888899;
 	//float i = 3.999;
 	int ptr[2] ={4} ;
@@ -34,42 +34,46 @@ int main(int argc, char **argv)
 	//printf("\ntexo %-20p\n", &ptr);
 	//ft_printf("\ntext %-15p\n", ptr);
 	//printf("\ntexo %-15p\n", ptr);
+	//ft_printf("");
+	//printf("");
 	//ft_printf("\ntext %-15p\n", &a);
 	//printf("\ntexo %-15p\n", &a);
 
-	//ft_printf("\ntext %6s\n", str);
-	//printf("\ntexo %6s\n", str);
+	//ft_printf("\ntext %6.s\n", str);
+	//printf("\ntexo %6.s\n", str);
+	//ft_printf("\ntext %-6.s\n", str);
+	//printf("\ntexo %-6.s\n", str);
 	//fd = open (argv[1], O_WRONLY | O_CREAT , 0600);
 	//ft_printf(MAGENTA"text %>-*.*x"END,1, 15, 40, i);
 	//printf(BLUE"\ntexo %-*.*x"END"\n", 15, 40, i);
 	//ft_printf("\ntext %llo\n", k);
 	//printf("\ntexo %llo\n", k);
 
-	//ft_printf("text %20.0llX", k);
-	//printf("\ntexo %20.0llX\n", k);
+	ft_printf("text %2.23ld", k);
+	printf("\ntexo %2.23ld\n", k);
 
 	//ft_printf("text % +30f",0);
 	//printf("\ntexo % +30f\n", 0);
-	ft_printf("text %#020llx", i);   //c x
-	printf("\ntexo %#020x\n", i);
+	//ft_printf("text %#020llx", i);   //c x
+	//printf("\ntexo %#020x\n", i);
 
 	//ft_printf("text %020X", i);
 	//printf("\ntexo %020X\n",i);
-	ft_printf("text "RED"%>+-*.d"END,1,8, i);
-	printf(END"\ntexo "CYAN"%+-*.d"END"\n",8,i);
+	//ft_printf("text "RED"%>+-*.d"END,1,8, i);
+	//printf(END"\ntexo "CYAN"%+-*.d"END"\n",8,i);
 
 	//printf("le fichier "YELLOW" %s "END" contient : "WHITE" %s"END, argv[1], str );
 	//ft_printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
 	//printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
-	ft_printf("\ntext %-10.s %s %s %s %shjjj\n","tr",  "tr" , "tr" ,"tr", "TR");
-	printf( "\ntext %-10.s %s %s %s %shjjj\n", "tr", "tr" ,"tr" , "tr", "TR");
+	//ft_printf("\ntext %-10.s %s %s %s %shjjj\n","tr",  "tr" , "tr" ,"tr", "TR");
+	//printf( "\ntext %-10.s %s %s %s %shjjj\n", "tr", "tr" ,"tr" , "tr", "TR");
 	//printf("\ntext\r %%% #-010.3s\n", str);
 	//printf("\ntext \v%%% #-010.3s\n", str);
 	//printf("\ntext \f%%% #-010.3s\n", str);
 
 	//ft_printf("text c");
-	//ft_printf("text %c", a);
-	//printf("\ntext %c\n", a);
+	ft_printf("text %c", a); //?s neinitializ a
+	printf("\ntexo %c\n", a);
 	//ft_printf("\ntext %10c", a);
 	//printf("\ntext %10c\n", a);
 	//ft_printf("\ntext %% \t%-10c aaa %c %d", a, a, i);
