@@ -1,21 +1,4 @@
 #include "ft_printf.h"
-#include <stdio.h>
-
-double	dabs(double a)
-{
-	if (a < 0.0f)
-		return (-a);
-	else
-		return (a);
-}
-
-int		iabs(int a)
-{
-	if (a < 0)
-		return (-a);
-	else
-		return (a);
-}
 
 int		ft_islower(int ch)
 {
@@ -27,33 +10,65 @@ int		ft_islower(int ch)
 		return (-1);
 }
 
-long long int	dt(int degree)
+void		cut_str(char *str)
 {
-	if (degree-- > 0)
-		return (10 * dt(degree));
-	else
-		return (1);
+	int	count;
+
+	count = ft_strlen(str) - 1;
+	while (str[count] == '0')
+	{
+		str[count] = '\0';
+		count--;
+	}
+	if (str[count] == '.')
+		str[count] = '\0';
 }
 
-void	ft_itoa_unsigned(int num, char *str, int precision)
+int			ft_isnan(long double nbr)
 {
-	int			size;
-	int			count;
-	long int	tmp;
+	union test_nan_union	tnan;
 
-	size = 1;
-	tmp = num;
-	while (tmp /= 10)
-		size++;
-	count = ft_strlen(str);
-	while (precision > size)
+	tnan.d = (double) nbr;
+	if (tnan.l == 0x7FF8000000000000 || tnan.l == 0xFFF8000000000000)
+		return (1);
+	return (0);
+}
+
+int			ft_isinf(long double nbr)
+{
+	union test_nan_union	tnan;
+
+	tnan.d = (double) nbr;
+	if (tnan.l == 0x7FF0000000000000)
+		return (1);
+	if (tnan.l == 0xFFF0000000000000)
+		return (-1);
+	return (0);
+}
+
+int			nan_inf(long double nbr, t_prn *prn, char *str)
+{
+	if (ft_isnan(nbr))
 	{
-		str[count++] = '0';
-		precision--;
+		if (ft_islower(prn->type))
+			ft_strcpy(str, "nan");
+		else
+			ft_strcpy(str, "NAN");
+		prn->fl_zero = 0;
+		prn->fl_plus = 0;
+		prn->sign = 0;
+		return (1);
 	}
-	while (size--)
+	if (ft_isinf(nbr) != 0)
 	{
-		str[size] = (iabs(num) % 10) + '0';
-		num /= 10;
+		str[0] = (ft_isinf(nbr) < 0) ? '-' : '+';
+		if (ft_islower(prn->type))
+			ft_strcpy(&str[1], "inf");
+		else
+			ft_strcpy(&str[1], "INF");
+		prn->fl_zero = 0;
+		prn->sign = 0;
+		return (1);
 	}
+	return (0);
 }

@@ -37,7 +37,6 @@ typedef struct	s_prn
 	int 		mod_L;
 	int 		size;
 	int			sign;
-	int 		neg;
 	int			fd;
 	char 		type;
 }				t_prn;
@@ -55,7 +54,7 @@ int 			print_s(t_prn *prn);
 int 			print_c(t_prn *prn);
 int 			print_p(t_prn *prn);
 int 			print_ouxX(t_prn *prn);
-int 			print_f(t_prn *prn);
+int 			print_efg(t_prn *prn);
 
 int 			print_txt(const char *format, int size);
 void 			ft_print_type_csp(int size,int len,t_prn *prn, char *str);
@@ -67,14 +66,22 @@ int				ft_count_len(int len, char *str,t_prn *prn);
 intmax_t		ft_get_signed_mod_llhh(t_prn *prn);
 int				ft_undefined_behavior(t_prn *prn);
 
+int				find_type(const char *format, t_prn *prn);
+int				set_flag(const char *format, t_prn *prn, int end);
+int				set_width(const char *format, int i, t_prn *prn);
+int				set_precision(const char *format, int i, t_prn *prn);
+int				set_mod(const char *format, int i, t_prn *prn);
+int				ft_find_count(const char *s, int c);
+
 long double		get_nbr(t_prn *prn);
-void			cut_str(char *str);
 int				print_format(t_prn *prn, char *str);
-void			add_exp(char *str, int degree, t_prn *prn);
-void			ft_itoa_unsigned(int num, char *str, int precision);
-long long int	dt(int degree);
 int				ft_islower(int ch);
-int				iabs(int a);
-double			dabs(double a);
+int				get_degree(long double *nbr, t_prn *prn);
+void			cut_str(char *str);
+void			add_exp(char *str, int degree, t_prn *prn);
+int				ft_isnan(long double nbr);
+int				ft_isinf(long double nbr);
+int				nan_inf(long double nbr, t_prn *prn, char *str);
+void			add_point(char *str, t_prn *prn, int degree);
 
 #endif //FT_PRINTF_FT_PRINTF_H

@@ -1,24 +1,26 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-int		get_degree(long double *nbr)
+int		get_degree(long double *nbr, t_prn *prn)
 {
 	int			degree;
 
 	degree = 0;
-	if (dabs(*nbr) < 1.0f)
+	if ((*nbr) < 1.0e-15f)
+		return (0);
+	if ((*nbr) < 1.0f)
 	{
-		while (dabs(*nbr) < 1.0f)
+		while ((*nbr) < 1.0f)
 		{
-			*nbr *= 10;
+			*nbr *= 10.0f;
 			degree--;
 		}
 	}
 	else
-			while (dabs(*nbr) >= 10.0f)
+			while ((*nbr) >= 10.0f)
 			{
 				degree++;
-				*nbr /= 10;
+				*nbr *= 0.1;
 			}
 	return (degree);
 }
@@ -26,17 +28,31 @@ int		get_degree(long double *nbr)
 void	add_exp(char *str, int degree, t_prn *prn)
 {
 	int	count;
+	int	tmp;
+	int	size;
 
 	count = ft_strlen(str);
 	str[count++] = (ft_islower(prn->type) == 1) ? 'e' : 'E';
 	str[count++] = (degree < 0) ? '-' : '+';
-	if (iabs(degree) < 10)
+	degree = (degree < 0) ? -degree : degree;
+	if (degree < 10)
 	{
 		str[count++] = '0';
-		str[count] = iabs(degree) + '0';
+		str[count] = degree + '0';
 	}
 	else
-		ft_itoa_unsigned(degree, str, 0);
+	{
+		tmp = degree;
+		size = 0;
+		while(tmp /= 10)
+			size++;
+		str[count + size + 1] = '\0';
+		while (size)
+		{
+			str[count + size--] = (degree % 10) + '0';
+			degree /= 10;
+		}
+	}
 }
 
 void	print_flag_str(t_prn *prn, int len)
@@ -44,8 +60,8 @@ void	print_flag_str(t_prn *prn, int len)
 	int	i;
 	char	sign;
 
-	sign = (prn->neg == 1) ? '-' : '+';
-	if ((prn->fl_plus == 1 || prn->neg == 1) && prn->fl_minus == 0)
+	sign = (prn->sign == 1) ? '-' : '+';
+	if ((prn->fl_plus == 1 || prn->sign == 1) && prn->fl_minus == 0)
 	{
 		prn->width -= 1;
 		if (prn->fl_zero == 1)
@@ -59,20 +75,8 @@ void	print_flag_str(t_prn *prn, int len)
 		else
 			ft_putchar(' ');
 	}
-	if ((prn->fl_plus == 1 || prn->neg == 1) && prn->fl_minus == 0 && prn->fl_zero == 0)
+	if ((prn->fl_plus == 1 || prn->sign == 1) && prn->fl_minus == 0 && prn->fl_zero == 0)
 		ft_putchar(sign);
-}
-
-void		cut_str(char *str)
-{
-	int	count;
-
-	count = ft_strlen(str) - 1;
-	while (str[count] == '0' || str[count] == '.')
-	{
-		str[count] = '\0';
-		count--;
-	}
 }
 
 int		print_format(t_prn *prn, char *str)
@@ -81,12 +85,12 @@ int		print_format(t_prn *prn, char *str)
 
 	len = ft_strlen(str);
 	if (prn->width < len)
-		prn->width = (prn->neg == 0) ? len : (len + 1);
+		prn->width = (prn->sign == 0) ? len : (len + 1);
 	if (prn->fl_minus == 1)
 	{
-		if (prn->fl_plus == 1 || prn->neg == 1)
+		if (prn->fl_plus == 1 || prn->sign == 1)
 		{
-			if (prn->neg == 1)
+			if (prn->sign == 1)
 				ft_putchar('-');
 			else
 				ft_putchar('+');
@@ -100,7 +104,28 @@ int		print_format(t_prn *prn, char *str)
 		print_flag_str(prn, len);
 		ft_putstr(str);
 	}
-	prn->width += (prn->neg == 0) ? 0 : 1;
+	prn->width += (prn->sign == 0) ? 0 : 1;
 	printf("|size = %d|\n", prn->width);
 	return (prn->width);
+}
+
+void add_point(char *str, t_prn *prn, int degree)
+{
+	int	len;
+	int	count;
+
+	count = (prn->type == 'e' || prn->type == 'E' || degree <= 0) ?
+			1 : degree + 1;
+	len = count + prn->precision;
+	str[len + 1] = '\0';
+	while (len > (count))
+	{
+		str[len] = str[len - 1];
+		len--;
+	}
+	str[count] = '.';
+	if (prn->type == 'e' || prn->type == 'E')
+		add_exp(str, degree, prn);
+	if (prn->type == 'g' || prn->type == 'G')
+		cut_str(str);
 }
