@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 #include <stdio.h>
 
 uintmax_t	ft_get_unsigned_mod_llhh(t_prn *prn)
@@ -80,7 +80,7 @@ int		print_ouxX(t_prn *prn)
 		ft_itoa16(num, str, 16, "0123456789abcdef");
 	else if (prn->type == 'X')
 		ft_itoa16(num, str, 16, "0123456789ABCDEF");
-	len = ft_count_len(ft_strlen(str), str,prn);
+	len = ft_count_len(ft_strlen(str), prn);
 	size = (prn->width > len) ? prn->width : len;
 	ft_print_number(len, size, str, prn);
 	return (0);

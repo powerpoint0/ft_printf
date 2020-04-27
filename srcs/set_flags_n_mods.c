@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int	find_type(const char *format, t_prn *prn)
 {

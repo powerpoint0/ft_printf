@@ -79,4 +79,5 @@ add_executable(ft_printf
         srcs/print_ouxX_p.c
         srcs/print_efg.c
         srcs/utils.c
-        main.c srcs/set_flags_n_mods.c)
+        srcs/set_flags_n_mods.c
+        main.c)

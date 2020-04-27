@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 #include <stdio.h>
 
 int		get_degree(long double *nbr, t_prn *prn)

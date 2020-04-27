@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 #include <stdio.h>
 
 void ft_print_type_csp(int size,int len, t_prn  *prn, char *str)
@@ -40,7 +40,7 @@ int print_s(t_prn *prn)
 		write(prn->fd, "(null)",6);
 		return (-1);
 	}
-	if(prn->precision > (ft_strlen(str)) || prn->precision == -1)
+	if(prn->precision > (int)(ft_strlen(str)) || prn->precision == -1)
 		prn->precision = ft_strlen(str);
 	len = prn->precision;
 	size = ft_strlen(str);

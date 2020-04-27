@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 #include <stdio.h>
 
 long double	get_nbr(t_prn *prn)

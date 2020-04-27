@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 intmax_t	ft_get_signed_mod_llhh(t_prn *prn)
 {
@@ -22,7 +22,7 @@ intmax_t	ft_get_signed_mod_llhh(t_prn *prn)
 	return (nbr);
 }
 
-int ft_count_len(int len, char *str,t_prn *prn)
+int ft_count_len(int len, t_prn *prn)
 {
 	int sign;
 
@@ -92,7 +92,7 @@ int print_di(t_prn *prn)
 	num = ft_get_signed_mod_llhh(prn);
 	ft_itoa16( num, str, 10, "0123456789");
 	prn->sign = (num >= 0)? 1: (-1);
-	len = ft_count_len(ft_strlen(str), str,prn);
+	len = ft_count_len(ft_strlen(str), prn);
 	size = (prn->width > len) ? prn->width : len;
 	ft_print_number(len, size, str, prn);
 	return (0);
