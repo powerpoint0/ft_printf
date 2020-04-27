@@ -9,9 +9,9 @@ int main(int argc, char **argv)
 	int		size;
 	char	*str = NULL;
 	//char *filename;
-	char a ;
+	char a = 'a';
 	long long int i = 95588888899;
-	//float i = 3.999;
+	float n = 3.999;
 	int ptr[2] ={4} ;
 
 	//i = 0;
@@ -44,13 +44,13 @@ int main(int argc, char **argv)
 	//ft_printf("\ntext %-6.s\n", str);
 	//printf("\ntexo %-6.s\n", str);
 	//fd = open (argv[1], O_WRONLY | O_CREAT , 0600);
-	//ft_printf(MAGENTA"text %>-*.*x"END,1, 15, 40, i);
-	//printf(BLUE"\ntexo %-*.*x"END"\n", 15, 40, i);
+	ft_printf(MAGENTA"text %>-*.*llx"END,1, 15,40, i);
+	printf(BLUE"\ntexo %-*.*llx"END"\n", 15, 40, i);
 	//ft_printf("\ntext %llo\n", k);
 	//printf("\ntexo %llo\n", k);
 
-	ft_printf("text %2.23ld", k);
-	printf("\ntexo %2.23ld\n", k);
+	ft_printf("text %#23.23lf", n);
+	printf("\ntexo %#23.23lf\n", n);
 
 	//ft_printf("text % +30f",0);
 	//printf("\ntexo % +30f\n", 0);
@@ -72,8 +72,8 @@ int main(int argc, char **argv)
 	//printf("\ntext \f%%% #-010.3s\n", str);
 
 	//ft_printf("text c");
-	ft_printf("text %c", a); //?s neinitializ a
-	printf("\ntexo %c\n", a);
+	ft_printf("text %18Ld", i); //?s neinitializ a
+	printf("\ntexo %18Ld\n", i);
 	//ft_printf("\ntext %10c", a);
 	//printf("\ntext %10c\n", a);
 	//ft_printf("\ntext %% \t%-10c aaa %c %d", a, a, i);
