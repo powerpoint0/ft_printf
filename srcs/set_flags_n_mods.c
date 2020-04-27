@@ -30,7 +30,7 @@ int	set_flag(const char *format, t_prn *prn, int end)
 	int		i;
 
 	i = 0;
-	while (i < end && (ft_strchr("-+ #0>", format[i]) != NULL))
+	while (i < end && (ft_strchr("-+ #0^", format[i]) != NULL))
 	{
 		if (format[i] == '-')
 			prn->fl_minus = 1;
@@ -42,7 +42,7 @@ int	set_flag(const char *format, t_prn *prn, int end)
 			prn->fl_sharp = 1;
 		if (format[i] == '0')
 			prn->fl_zero = 1;
-		if (format[i] == '>')
+		if (format[i] == '^')
 			prn->fd = ft_get_signed_mod_llhh(prn);
 		i++;
 	}

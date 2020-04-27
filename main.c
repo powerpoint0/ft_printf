@@ -43,30 +43,30 @@ int main(int argc, char **argv)
 	//printf("\ntexo %6.s\n", str);
 	//ft_printf("\ntext %-6.s\n", str);
 	//printf("\ntexo %-6.s\n", str);
-	//fd = open (argv[1], O_WRONLY | O_CREAT , 0600);
+	//fd = open (argv[1], O_WRONLY | O_CREAT | O_EXCL, 0600);          //O_TRUNK
 	//ft_printf(MAGENTA"text %>-*.*llx"END,1, 15,40, i);
 	//printf(BLUE"\ntexo %-*.*llx"END"\n", 15, 40, i);
 	//ft_printf("\ntext %llo\n", k);
 	//printf("\ntexo %llo\n", k);
 
-	ft_printf("text %# 6.3f", n);
-	printf("\ntexo %# 6.3f\n", n);
+	//ft_printf("text %# 6.0f", n);
+	//printf("\ntexo %# 6.0f\n", n);
 
 	//ft_printf("text % +30f",0);
 	//printf("\ntexo % +30f\n", 0);
 	//ft_printf("text %#020llx", i);   //c x
 	//printf("\ntexo %#020x\n", i);
 
-	ft_printf("text % +020.5lld", i);
-	printf("\ntexo % +020.5lld\n",i);
-	//ft_printf("text "RED"%>+-*.d"END,1,8, i);
-	//printf(END"\ntexo "CYAN"%+-*.d"END"\n",8,i);
+	//ft_printf("text % +020.5lld", i);
+	//printf("\ntexo % +020.5lld\n",i);
+	//ft_printf("text %+-*.d hj", fd, 8, i);
+	printf(END"\ntexo "CYAN"%+-*.d hj"END"\n",8, i);
 
 	//printf("le fichier "YELLOW" %s "END" contient : "WHITE" %s"END, argv[1], str );
 	//ft_printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
 	//printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
-	//ft_printf("\ntext %-10.s %s %s %s %shjjj\n","tr",  "tr" , "tr" ,"tr", "TR");
-	//printf( "\ntext %-10.s %s %s %s %shjjj\n", "tr", "tr" ,"tr" , "tr", "TR");
+	ft_printf("\nte^xt %-10.s %s %s %s %shjjj\n",1, "tr",  "tr" , "tr" ,"tr", "TR");
+	printf( "\ntext %-10.s %s %s %s %shjjj\n", "tr", "tr" ,"tr" , "tr", "TR");
 	//printf("\ntext\r %%% #-010.3s\n", str);
 	//printf("\ntext \v%%% #-010.3s\n", str);
 	//printf("\ntext \f%%% #-010.3s\n", str);
