@@ -6,8 +6,10 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <unistd.h>
-# include <stdlib.h>
-# include <sys/types.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <fcntl.h>
+
 
 #define B_SIZE 32
 

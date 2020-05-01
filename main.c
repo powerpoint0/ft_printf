@@ -1,6 +1,6 @@
-#include "includes/ft_printf.h"
-#include <stdio.h>
-#include <fcntl.h>
+#include "ft_printf.h"
+
+
 
 
 int main()
@@ -13,6 +13,7 @@ int main()
 	long long int i = 9558889;
 	float n = 3.999;
 	int ptr[2] ={4} ;
+
 
 	//i = 0;
 	k = 214;

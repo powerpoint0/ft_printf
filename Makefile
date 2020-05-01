@@ -2,13 +2,14 @@ NAME = libftprintf.a
 
 FLAGS = -Wall -Wextra -Werror
 
-source_dirs = srcs libft/src includes libft/includes
+source_dirs =. srcs libft/src includes libft/includes
 
 SRCS = libft/src/ft_atoi.c \
                libft/src/ft_bzero.c   \
                libft/src/ft_isdigit.c  \
                libft/src/ft_itoa.c     \
                libft/src/ft_memalloc.c \
+               libft/src/ft_memset.c \
                libft/src/ft_memccpy.c   \
                libft/src/ft_putchar.c   \
                libft/src/ft_putchar_fd.c\
@@ -53,5 +54,8 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+test: all
+	gcc  main.c -MD $(addprefix -I,$(source_dirs)) $(NAME) -o test
 
 include $(wildcard *.d)
