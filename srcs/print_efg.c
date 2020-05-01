@@ -34,7 +34,7 @@ void		write_to_string(long double nbr, char *str, t_prn *prn, int degree)
 	}
 }
 
-void		move_under_one(char *str, t_prn *prn, int degree)
+void		move_under_one(char *str, int degree)
 {
 	int	size;
 
@@ -55,7 +55,7 @@ int		corect_str(char *str, t_prn *prn, int degree)
 	int	size;
 
 	if (prn->type != 'e' && prn->type != 'E' && degree < 0)
-		move_under_one(str, prn, degree);
+		move_under_one(str, degree);
 	size = (prn->type == 'e' || prn->type == 'E' || degree <= 0) ?
 			(1 + prn->precision) : (1 + degree + prn->precision);
 	if (str[size] >= '5' && str[size] <= '9')
@@ -98,7 +98,7 @@ int		print_efg(t_prn *prn)
 	nbr = get_nbr(prn);
 	if (!nan_inf(nbr, prn, str))
 	{
-		degree = get_degree(&nbr, prn);
+		degree = get_degree(&nbr);
 		if (prn->precision == -1)
 			prn->precision = 6;
 		write_to_string(nbr, str, prn, degree);

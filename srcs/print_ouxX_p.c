@@ -71,6 +71,7 @@ int		print_ouxX(t_prn *prn)
 	uintmax_t num;
 
 	ft_bzero(str, 27);
+	prn->sign = 0;
 	num = ft_get_unsigned_mod_llhh(prn);
 	if (prn->type == 'o')
 		ft_itoa16( num, str, 8, "01234567");
@@ -83,5 +84,5 @@ int		print_ouxX(t_prn *prn)
 	len = ft_count_len(ft_strlen(str), prn);
 	size = (prn->width > len) ? prn->width : len;
 	ft_print_number(len, size, str, prn);
-	return (0);
+	return (size);
 }

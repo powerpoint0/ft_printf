@@ -1,9 +1,9 @@
-#include "../includes/ft_printf.h"
+#include "includes/ft_printf.h"
 #include <stdio.h>
 #include <fcntl.h>
 
 
-int main(int argc, char **argv)
+int main()
 {
 	long int		k;
 	int		size;
@@ -59,8 +59,8 @@ int main(int argc, char **argv)
 
 	//ft_printf("text % +020.5lld", i);
 	//printf("\ntexo % +020.5lld\n",i);
-	//ft_printf("text %+-*.d hj", fd, 8, i);
-	printf(END"\ntexo "CYAN"%+-*.d hj"END"\n",8, i);
+	ft_printf("text %+-*.d hj", 5,7);
+	printf(END"\ntexo "CYAN"%+-*.d hj"END"\n",5,7);
 
 	//printf("le fichier "YELLOW" %s "END" contient : "WHITE" %s"END, argv[1], str );
 	//ft_printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);

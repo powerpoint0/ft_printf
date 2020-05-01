@@ -1,7 +1,7 @@
 #include "../includes/ft_printf.h"
 #include <stdio.h>
 
-int		get_degree(long double *nbr, t_prn *prn)
+int		get_degree(long double *nbr)
 {
 	int			degree;
 
@@ -105,7 +105,7 @@ int		print_format(t_prn *prn, char *str)
 		ft_putstr(str);
 	}
 	prn->width += (prn->sign == 0) ? 0 : 1;
-	printf("|size = %d|\n", prn->width);
+	//printf("|size = %d|\n", prn->width);
 	return (prn->width);
 }
 

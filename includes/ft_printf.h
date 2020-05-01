@@ -5,6 +5,9 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <unistd.h>
+# include <stdlib.h>
+# include <sys/types.h>
 
 #define B_SIZE 32
 
@@ -75,12 +78,22 @@ int				ft_find_count(const char *s, int c);
 long double		get_nbr(t_prn *prn);
 int				print_format(t_prn *prn, char *str);
 int				ft_islower(int ch);
-int				get_degree(long double *nbr, t_prn *prn);
+int				get_degree(long double *nbr);
 void			cut_str(char *str);
 void			add_exp(char *str, int degree, t_prn *prn);
 int				ft_isnan(long double nbr);
 int				ft_isinf(long double nbr);
 int				nan_inf(long double nbr, t_prn *prn, char *str);
 void			add_point(char *str, t_prn *prn, int degree);
+
+/*size_t				ft_strlen(const char *str);
+char				*ft_strchr(const char *s, int c);
+int					ft_isalpha(int ch);
+int					ft_isdigit(int ch);
+void				ft_putnbr(int n);
+int					ft_putchar_fd(char c, int fd);
+void				ft_putstr_fd(char *s, int fd);
+int					ft_atoi(const char *str);*/
+
 
 #endif //FT_PRINTF_FT_PRINTF_H
