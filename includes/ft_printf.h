@@ -1,7 +1,7 @@
 #ifndef FT_PRINTF_FT_PRINTF_H
 #define FT_PRINTF_FT_PRINTF_H
 
-#include "../libft/includes/libft.h"
+#include "libft.h"
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdint.h>
@@ -85,15 +85,6 @@ int				ft_isnan(long double nbr);
 int				ft_isinf(long double nbr);
 int				nan_inf(long double nbr, t_prn *prn, char *str);
 void			add_point(char *str, t_prn *prn, int degree);
-
-/*size_t				ft_strlen(const char *str);
-char				*ft_strchr(const char *s, int c);
-int					ft_isalpha(int ch);
-int					ft_isdigit(int ch);
-void				ft_putnbr(int n);
-int					ft_putchar_fd(char c, int fd);
-void				ft_putstr_fd(char *s, int fd);
-int					ft_atoi(const char *str);*/
 
 
 #endif //FT_PRINTF_FT_PRINTF_H
