@@ -1,5 +1,4 @@
-#include "../includes/ft_printf.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 uintmax_t	ft_get_unsigned_mod_llhh(t_prn *prn)
 {

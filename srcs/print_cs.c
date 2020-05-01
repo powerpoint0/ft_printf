@@ -1,5 +1,4 @@
-#include "../includes/ft_printf.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 void ft_print_type_csp(int size,int len, t_prn  *prn, char *str)
 {
