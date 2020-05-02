@@ -26,7 +26,7 @@ int ft_count_len(int len, t_prn *prn)
 {
 	int sign;
 
-	if (prn->sign == -1 || prn->fl_space || prn->fl_plus)
+	if (prn->sign == -1 || prn->fl_space || (prn->fl_plus &&(ft_strchr("ouxX", prn->type) == 0)))
 		sign = 1;
 	else sign = 0;
 	if (prn->fl_sharp)
@@ -51,7 +51,7 @@ void ft_print_flags_numberType(int len, char *str, t_prn *prn)
 		if (prn->type == 'x' || (prn->type == 'X'))
 			write(prn->fd, &prn->type, 1);
 	}
-	if (prn->fl_plus)
+	if (prn->fl_plus && (ft_strchr("ouxX", prn->type) == 0)) //
 		(prn->sign >=0) ?(write(prn->fd, "+",1)) :(write(prn->fd, "-",1));
 	else
 		{
@@ -95,5 +95,6 @@ int print_di(t_prn *prn)
 	len = ft_count_len(ft_strlen(str), prn);
 	size = (prn->width > len) ? prn->width : len;
 	ft_print_number(len, size, str, prn);
+	prn->size_symb += size;
 	return (0);
 }

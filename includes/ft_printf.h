@@ -43,6 +43,7 @@ typedef struct	s_prn
 	int 		size;
 	int			sign;
 	int			fd;
+	int 		size_symb;
 	char 		type;
 }				t_prn;
 

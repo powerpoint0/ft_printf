@@ -59,6 +59,7 @@ int		print_p(t_prn *prn)
 	len = ft_strlen(str);
 	size = (len > prn->width) ? len : prn->width;
 	ft_print_type_csp(size,len, prn, str);
+	prn->size_symb += size;
 	return (size);
 }
 
@@ -83,5 +84,6 @@ int		print_ouxX(t_prn *prn)
 	len = ft_count_len(ft_strlen(str), prn);
 	size = (prn->width > len) ? prn->width : len;
 	ft_print_number(len, size, str, prn);
+	prn->size_symb += size;
 	return (size);
 }

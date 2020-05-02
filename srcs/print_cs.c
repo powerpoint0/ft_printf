@@ -25,7 +25,8 @@ int print_c(t_prn *prn)
 	len =1;
 	str[0] = (char)va_arg(prn->ap, int);
 	ft_print_type_csp(size,len, prn, str);
-	return (size);
+	prn->size_symb += size;
+	return (prn->size_symb);
 }
 
 int print_s(t_prn *prn)
@@ -37,6 +38,7 @@ int print_s(t_prn *prn)
 	if(!(str = va_arg(prn->ap, char*)))
 	{
 		write(prn->fd, "(null)",6);
+		prn->size_symb += 6;
 		return (-1);
 	}
 	if(prn->precision > (int)(ft_strlen(str)) || prn->precision == -1)
@@ -48,5 +50,6 @@ int print_s(t_prn *prn)
 	else if (prn->precision >= 0 )
 		size = prn->precision;
 	ft_print_type_csp(size, len, prn, str);
-	return (size);
+	prn->size_symb += size;
+	return (prn->size_symb);
 }

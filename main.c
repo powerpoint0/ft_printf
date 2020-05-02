@@ -60,14 +60,16 @@ int main()
 
 	//ft_printf("text % +020.5lld", i);
 	//printf("\ntexo % +020.5lld\n",i);
-	ft_printf("text %+-*.d hj", 5,7);
-	printf(END"\ntexo "CYAN"%+-*.d hj"END"\n",5,7);
+	printf("returnt=%d", ft_printf("папке"));
+	printf("returno=%d", printf("папке"));
+	//printf("returnt=%d",ft_printf("text %+-*.d hj", 5,7));
+	//printf("returno=%d",printf(END"\ntexo "CYAN"%+-*.d hj"END"\n",5,7));
 
 	//printf("le fichier "YELLOW" %s "END" contient : "WHITE" %s"END, argv[1], str );
 	//ft_printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
 	//printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
-	ft_printf("\nte^xt %-10.s %s %s %s %shjjj\n",1, "tr",  "tr" , "tr" ,"tr", "TR");
-	printf( "\ntext %-10.s %s %s %s %shjjj\n", "tr", "tr" ,"tr" , "tr", "TR");
+	printf("returnt=%d",ft_printf("\nte^xt %-10.s %s %s %s %shjjj\n",1, "tr",  "tr" , "tr" ,"tr", "TR"));
+	printf("returno=%d",printf( "\ntext %-10.s %s %s %s %shjjj\n", "tr", "tr" ,"tr" , "tr", "TR"));
 	//printf("\ntext\r %%% #-010.3s\n", str);
 	//printf("\ntext \v%%% #-010.3s\n", str);
 	//printf("\ntext \f%%% #-010.3s\n", str);
