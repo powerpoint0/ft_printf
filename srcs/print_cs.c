@@ -3,14 +3,16 @@
 void ft_print_type_csp(int size,int len, t_prn  *prn, char *str)
 {
 	int		i;
+	char c;
 
 	i = 0;
+	c = (prn->fl_zero)? '0' : ' ';
 	while(i < size)
 	 {
 		if (prn->fl_minus == 0)
-			(i < (size - len)) ? (write(prn->fd, " ", 1)) : (write(prn->fd, &str[i - (size - len)], 1));
+			(i < (size - len)) ? (write(prn->fd, &c, 1)) : (write(prn->fd, &str[i - (size - len)], 1));
 		if (prn->fl_minus == 1)
-			(i < len) ? write(prn->fd, &str[i], 1) : write(prn->fd, " ", 1);
+			(i < len) ? write(prn->fd, &str[i], 1) : write(prn->fd, &c, 1);
 		i++;
 	}
 }
@@ -34,13 +36,10 @@ int print_s(t_prn *prn)
 	int		len;
 	char	*str;
 	int		size;
+	char	null[7]= "(null)\0";
 
 	if(!(str = va_arg(prn->ap, char*)))
-	{
-		write(prn->fd, "(null)",6);
-		prn->size_symb += 6;
-		return (-1);
-	}
+		str = null;
 	if(prn->precision > (int)(ft_strlen(str)) || prn->precision == -1)
 		prn->precision = ft_strlen(str);
 	len = prn->precision;

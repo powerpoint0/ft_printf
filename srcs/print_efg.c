@@ -1,5 +1,4 @@
 #include "ft_printf.h"
-#include <stdio.h>
 
 long double	get_nbr(t_prn *prn)
 {
@@ -65,12 +64,12 @@ int			calc_size(int degree, t_prn *prn)
 	if (prn->type == 'g' || prn->type == 'G')
 	{
 		size = (degree < 0 && degree > -5) ?
-				((-degree) + prn->precision) : prn->precision;
+			   ((-degree) + prn->precision) : prn->precision;
 	}
 	else
 	{
 		size = (prn->type == 'e' || prn->type == 'E' || degree <= 0) ?
-				(1 + prn->precision) : (1 + degree + prn->precision);
+			   (1 + prn->precision) : (1 + degree + prn->precision);
 	}
 	return (size);
 }
@@ -79,7 +78,7 @@ int			correct_str(char *str, t_prn *prn, int degree)
 	int	size;
 
 	if (((prn->type == 'f' || prn->type == 'F') && degree < 0) ||
-			((prn->type == 'g' || prn->type == 'G') && (degree > -5 && degree < 0)))
+		((prn->type == 'g' || prn->type == 'G') && (degree > -5 && degree < 0)))
 		move_under_one(str, degree);
 	size = calc_size(degree, prn);
 	if (str[size] >= '5' && str[size] <= '9')
@@ -117,7 +116,7 @@ int			print_efg(t_prn *prn)
 		if (prn->type == 'g' || prn->type == 'G')
 		{
 			cut_str(str);
-			if (degree < -4 || (degree + 1 - prn->precision) >= 0 && degree > 0)
+			if (degree < -4 || (((degree + 1 - prn->precision) >= 0) && (degree > 0)))
 				add_exp(str, degree, prn);
 		}
 	}

@@ -23,8 +23,10 @@ int main()
 
 	//i = i*3 ;
 	int fd;
-
-
+	printf("returnt=%d",ft_printf("\ntext%#.x %#.0x\n", 0, 0));
+	printf("returnt=%d",printf("\ntext%#.x %#.0x\n", 0, 0));
+	printf("returnt=%d",ft_printf("@moulitest: %.x %.0x\n", 0, 0));
+	printf("returnt=%d",printf("@moulitest: %.x %.0x\n", 0, 0));
 	//ft_printf("text %p", &str);
 	//printf("\ntexo %p\n", &str);
 
@@ -40,8 +42,8 @@ int main()
 	//ft_printf("\ntext %-15p\n", &a);
 	//printf("\ntexo %-15p\n", &a);
 
-	//ft_printf("\ntext %6.s\n", str);
-	//printf("\ntexo %6.s\n", str);
+	ft_printf("\ntext %6.s\n", str);
+	printf("\ntexo %6.s\n", str);
 	//ft_printf("\ntext %-6.s\n", str);
 	//printf("\ntexo %-6.s\n", str);
 	//fd = open (argv[1], O_WRONLY | O_CREAT | O_EXCL, 0600);          //O_TRUNK
@@ -60,16 +62,16 @@ int main()
 
 	//ft_printf("text % +020.5lld", i);
 	//printf("\ntexo % +020.5lld\n",i);
-	printf("returnt=%d", ft_printf("папке"));
-	printf("returno=%d", printf("папке"));
+	//printf("returnt=%d", ft_printf("папке"));
+	//printf("returno=%d", printf("папке"));
 	//printf("returnt=%d",ft_printf("text %+-*.d hj", 5,7));
 	//printf("returno=%d",printf(END"\ntexo "CYAN"%+-*.d hj"END"\n",5,7));
 
 	//printf("le fichier "YELLOW" %s "END" contient : "WHITE" %s"END, argv[1], str );
 	//ft_printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
 	//printf("\ntext\n %% \taaa\r\v\f %-10.3s aaa", str);
-	printf("returnt=%d",ft_printf("\nte^xt %-10.s %s %s %s %shjjj\n",1, "tr",  "tr" , "tr" ,"tr", "TR"));
-	printf("returno=%d",printf( "\ntext %-10.s %s %s %s %shjjj\n", "tr", "tr" ,"tr" , "tr", "TR"));
+	//printf("returnt=%d",ft_printf("\nte^xt %-10.s %s %s %s %shjjj\n",1, "tr",  "tr" , "tr" ,"tr", "TR"));
+	//printf("returno=%d",printf( "\ntext %-10.s %s %s %s %shjjj\n", "tr", "tr" ,"tr" , "tr", "TR"));
 	//printf("\ntext\r %%% #-010.3s\n", str);
 	//printf("\ntext \v%%% #-010.3s\n", str);
 	//printf("\ntext \f%%% #-010.3s\n", str);

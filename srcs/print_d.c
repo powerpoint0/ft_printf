@@ -22,17 +22,20 @@ intmax_t	ft_get_signed_mod_llhh(t_prn *prn)
 	return (nbr);
 }
 
-int ft_count_len(int len, t_prn *prn)
+int ft_count_len(int len,char *str, t_prn *prn)
 {
 	int sign;
 
+	//if (prn->precision == 0 && str[0]== '0')
+	//	ft_bzero(str,27);
+	ft_strlen(str);
 	if (prn->sign == -1 || prn->fl_space || (prn->fl_plus &&(ft_strchr("ouxX", prn->type) == 0)))
 		sign = 1;
 	else sign = 0;
 	if (prn->fl_sharp)
 	{
-		sign += ((len <= prn->precision) && (prn->type == 'o')) ? 1 : 0;
-		sign += ((prn->type == 'x' || (prn->type == 'X'))) ? 2 : 0;
+		sign += ((len <= prn->precision) && (prn->type == 'o') && str[0]!= '\0') ? 1 : 0;
+		sign += ((prn->type == 'x' || prn->type == 'X') && str[0]!= '\0') ? 2 : 0;
 	}
 	if((prn->precision ==-1) && (prn->width > len) && prn->fl_zero)
 		prn->precision = prn->width -sign;
@@ -44,7 +47,7 @@ int ft_count_len(int len, t_prn *prn)
 
 void ft_print_flags_numberType(int len, char *str, t_prn *prn)
 {
-	if (prn->fl_sharp)
+	if (prn->fl_sharp && str[0]!='\0')
 	{
 		if (((len == prn->precision) && (prn->type == 'o')) || (prn->type == 'x')|| (prn->type == 'X'))
 			write(prn->fd, "0", 1);
@@ -62,6 +65,8 @@ void ft_print_flags_numberType(int len, char *str, t_prn *prn)
 		}
 	while (len++ != prn->precision)
 		write(prn->fd, "0", 1);
+	//printf("c=%d", prn->size_symb);
+	//if (str[0]!='\0')
 	ft_putstr_fd(str, prn->fd);
 }
 
@@ -90,9 +95,10 @@ int print_di(t_prn *prn)
 
 	ft_bzero(str, 27);
 	num = ft_get_signed_mod_llhh(prn);
-	ft_itoa16( num, str, 10, "0123456789");
+	if (!(num == 0 && prn->precision ==0))
+		ft_itoa16( num, str, 10, "0123456789");
 	prn->sign = (num >= 0)? 1: (-1);
-	len = ft_count_len(ft_strlen(str), prn);
+	len = ft_count_len(ft_strlen(str), str, prn);
 	size = (prn->width > len) ? prn->width : len;
 	ft_print_number(len, size, str, prn);
 	prn->size_symb += size;

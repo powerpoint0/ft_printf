@@ -1,5 +1,4 @@
 #include "ft_printf.h"
-#include <stdio.h>
 
 int		get_degree(long double *nbr)
 {
@@ -19,11 +18,11 @@ int		get_degree(long double *nbr)
 		}
 	}
 	else
-			while ((*nbr) >= 10.0)
-			{
-				degree++;
-				*nbr /= 10.0;
-			}
+		while ((*nbr) >= 10.0)
+		{
+			degree++;
+			*nbr /= 10.0;
+		}
 	return (degree);
 }
 
@@ -115,11 +114,11 @@ void add_point(char *str, t_prn *prn, int degree)
 	int	count;
 
 	if (prn->type == 'g' || prn->type == 'G')
-		count = (degree < 0 || (degree + 1 - prn->precision) >= 0 && degree > 0) ?
+		count = (degree < 0 || ((degree + 1 - prn->precision) >= 0 && degree > 0)) ?
 				1 : degree + 1;
 	else
 		count = (prn->type == 'e' || prn->type == 'E' || degree <= 0) ?
-			1 : degree + 1;
+				1 : degree + 1;
 
 	if (prn->precision == 0)
 		str[count] = '\0';
