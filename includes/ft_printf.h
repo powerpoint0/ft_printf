@@ -88,6 +88,8 @@ int				ft_isnan(long double nbr);
 int				ft_isinf(long double nbr);
 int				nan_inf(long double nbr, t_prn *prn, char *str);
 void			add_point(char *str, t_prn *prn, int degree);
+int				correct_str(char *str, t_prn *prn, int degree);
+void			move_under_one(char *str, int degree);
 
 
 #endif //FT_PRINTF_FT_PRINTF_H

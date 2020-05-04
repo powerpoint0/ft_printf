@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include <stdio.h>
 
 long double	get_nbr(t_prn *prn)
 {
@@ -28,66 +29,74 @@ void		write_to_string(long double nbr, char *str, t_prn *prn, int degree)
 	{
 		str[i] = (unsigned int) nbr + '0';
 		nbr -= (unsigned int) nbr;
-		nbr *= 10;
+		nbr *= 10.0;
 		i++;
 	}
 }
 
-void		move_under_one(char *str, int degree)
+int			ft_round9(char *str, int count, int degree)
 {
-	int	size;
-
-	degree = - degree;
-	size = ft_strlen(str) ;
-	while (size >= 0)
+	str[count + 1] = '\0';
+	while (count >= 0)
 	{
-		str[size + degree] = str[size];
-		size--;
-	}
-	while (--degree >= 0)
-		str[degree] = '0';
-}
-
-int		corect_str(char *str, t_prn *prn, int degree)
-{
-	int	count;
-	int	size;
-
-	if (prn->type != 'e' && prn->type != 'E' && degree < 0)
-		move_under_one(str, degree);
-	size = (prn->type == 'e' || prn->type == 'E' || degree <= 0) ?
-			(1 + prn->precision) : (1 + degree + prn->precision);
-	if (str[size] >= '5' && str[size] <= '9')
-	{
-		count = size - 1;
-		if (str[count + 1] == '9')
+		if (count == 0 && str[count] == '9')
 		{
-			while (count > 0)
-			{
-				if (str[count] == '9')
-					str[count] = '0';
-				else
-				{
-					str[count] = str[count] + 1;
-					count = 0;
-				}
-				count--;
-			}
-			if (count == 0 && str[count] == '9')
-			{
-				str[count] = '1';
-				degree++;
-				str[size] = '0';
-			}
+			str[count] = '1';
+			degree++;
+			str[ft_strlen(str)] = '0';
+			str[ft_strlen(str) + 1] = '\0';
 		}
 		else
+		if (count != 0 && str[count] == '9')
+			str[count] = '0';
+		else
+		{
 			str[count] = str[count] + 1;
+			count = 0;
+		}
+		count--;
 	}
-	str[size + 1] = '\0';
+	return(degree);
+}
+
+int			calc_size(int degree, t_prn *prn)
+{
+	int	size;
+	if (prn->type == 'g' || prn->type == 'G')
+	{
+		size = (degree < 0 && degree > -5) ?
+				((-degree) + prn->precision) : prn->precision;
+	}
+	else
+	{
+		size = (prn->type == 'e' || prn->type == 'E' || degree <= 0) ?
+				(1 + prn->precision) : (1 + degree + prn->precision);
+	}
+	return (size);
+}
+int			correct_str(char *str, t_prn *prn, int degree)
+{
+	int	size;
+
+	if (((prn->type == 'f' || prn->type == 'F') && degree < 0) ||
+			((prn->type == 'g' || prn->type == 'G') && (degree > -5 && degree < 0)))
+		move_under_one(str, degree);
+	size = calc_size(degree, prn);
+	if (str[size] >= '5' && str[size] <= '9')
+	{
+		if (str[size - 1] == '9')
+		{
+			degree = ft_round9(str, size - 1, degree);
+			size = calc_size(degree, prn);
+		}
+		else
+			str[size - 1] = str[size - 1] + 1;
+	}
+	str[size] = '\0';
 	return (degree);
 }
 
-int		print_efg(t_prn *prn)
+int			print_efg(t_prn *prn)
 {
 	long double				nbr;
 	char					str[315];
@@ -101,9 +110,17 @@ int		print_efg(t_prn *prn)
 		if (prn->precision == -1)
 			prn->precision = 6;
 		write_to_string(nbr, str, prn, degree);
-		degree = corect_str(str, prn, degree);
+		degree = correct_str(str, prn, degree);
 		add_point(str, prn, degree);
+		if (prn->type == 'e' || prn->type == 'E')
+			add_exp(str, degree, prn);
+		if (prn->type == 'g' || prn->type == 'G')
+		{
+			cut_str(str);
+			if (degree < -4 || (degree + 1 - prn->precision) >= 0 && degree > 0)
+				add_exp(str, degree, prn);
+		}
 	}
-	print_format(prn, str);
-	return (prn->width);
+	prn->size_symb += print_format(prn, str);
+	return (0);
 }

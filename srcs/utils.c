@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int		ft_islower(int ch)
+int			ft_islower(int ch)
 {
 	if (ch >= 'a' && ch <= 'z')
 		return (1);
@@ -71,4 +71,19 @@ int			nan_inf(long double nbr, t_prn *prn, char *str)
 		return (1);
 	}
 	return (0);
+}
+
+void		move_under_one(char *str, int degree)
+{
+	int	size;
+
+	degree = - degree;
+	size = ft_strlen(str) ;
+	while (size >= 0)
+	{
+		str[size + degree] = str[size];
+		size--;
+	}
+	while (--degree >= 0)
+		str[degree] = '0';
 }
