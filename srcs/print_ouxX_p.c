@@ -53,9 +53,14 @@ int		print_p(t_prn *prn)
 	int					len;
 	int					size;
 
-	ft_bzero(str+6, 27);
-	num = (unsigned int)va_arg(prn->ap, void*);
-	ft_itoa16(num, str+6, 16, "0123456789abcdef");
+	ft_bzero(str+6, 22);
+	if(!(num = (unsigned int)va_arg(prn->ap, void*)))
+	{
+		ft_bzero(str + 2, 25);
+		ft_itoa16(num, str + 2, 16, "0123456789abcdef");
+	}
+	else
+		ft_itoa16(num, str + 6, 16, "0123456789abcdef");
 	len = ft_strlen(str);
 	size = (len > prn->width) ? len : prn->width;
 	ft_print_type_csp(size,len, prn, str);
@@ -73,11 +78,7 @@ int		print_ouxX(t_prn *prn)
 	ft_bzero(str, 27);
 	prn->sign = 0;
 	num = ft_get_unsigned_mod_llhh(prn);
-	if (num == 0)
-		prn->fl_sharp = 0;
-	if (!(num == 0 && ( prn->precision ==0 )))
-	{
-		if (prn->type == 'o')
+	if (prn->type == 'o')
 		ft_itoa16( num, str, 8, "01234567");
 	else if (prn->type == 'u')
 		ft_itoa16( num, str, 10, "0123456789");
@@ -85,7 +86,6 @@ int		print_ouxX(t_prn *prn)
 		ft_itoa16(num, str, 16, "0123456789abcdef");
 	else if (prn->type == 'X')
 		ft_itoa16(num, str, 16, "0123456789ABCDEF");
-	}
 	len = ft_count_len(ft_strlen(str), str,prn);
 	size = (prn->width > len) ? prn->width : len;
 	ft_print_number(len, size, str, prn);
