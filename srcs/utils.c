@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dfigg <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/07 06:59:50 by dfigg             #+#    #+#             */
+/*   Updated: 2020/05/07 06:59:57 by dfigg            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int			ft_islower(int ch)
@@ -28,7 +40,7 @@ int			ft_isnan(long double nbr)
 {
 	union test_nan_union	tnan;
 
-	tnan.d = (double) nbr;
+	tnan.d = (double)nbr;
 	if (tnan.l == 0x7FF8000000000000 || tnan.l == 0xFFF8000000000000)
 		return (1);
 	return (0);
@@ -38,7 +50,7 @@ int			ft_isinf(long double nbr)
 {
 	union test_nan_union	tnan;
 
-	tnan.d = (double) nbr;
+	tnan.d = (double)nbr;
 	if (tnan.l == 0x7FF0000000000000)
 		return (1);
 	if (tnan.l == 0xFFF0000000000000)
@@ -77,8 +89,8 @@ void		move_under_one(char *str, int degree)
 {
 	int	size;
 
-	degree = - degree;
-	size = ft_strlen(str) ;
+	degree = -degree;
+	size = ft_strlen(str);
 	while (size >= 0)
 	{
 		str[size + degree] = str[size];

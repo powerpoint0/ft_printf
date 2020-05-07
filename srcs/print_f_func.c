@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_f_func.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dfigg <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/07 06:58:53 by dfigg             #+#    #+#             */
+/*   Updated: 2020/05/07 06:59:03 by dfigg            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
+#include <stdio.h>
 
 int		get_degree(long double *nbr)
 {
@@ -44,7 +57,7 @@ void	add_exp(char *str, int degree, t_prn *prn)
 	else
 	{
 		tmp = degree;
-		while(tmp /= 10)
+		while (tmp /= 10)
 			count++;
 		str[count + 1] = '\0';
 		while (degree > 0)
@@ -57,26 +70,28 @@ void	add_exp(char *str, int degree, t_prn *prn)
 
 void	print_flag_str(t_prn *prn, int len)
 {
-	int	i;
+	int		i;
 	char	sign;
+	char	ch;
 
 	sign = (prn->sign == 1) ? '-' : '+';
+	if (prn->fl_space == 1 && prn->fl_plus != 1 && prn->sign != 1 &&
+		prn->width == len)
+		prn->size_symb += write(1, " ", 1);
 	if ((prn->fl_plus == 1 || prn->sign == 1) && prn->fl_minus == 0)
 	{
-		prn->width -= 1;
+		if (prn->width > len)
+			prn->width -= 1;
 		if (prn->fl_zero == 1)
-			write(1, &sign, 1);
+			prn->size_symb += write(1, &sign, 1);
 	}
 	i = 0;
+	ch = (prn->fl_zero == 1) ? '0' : ' ';
 	while (i++ < (prn->width - len))
-	{
-		if (prn->fl_zero == 1)
-			write(1, "0", 1);
-		else
-			write(1, " ", 1);
-	}
-	if ((prn->fl_plus == 1 || prn->sign == 1) && prn->fl_minus == 0 && prn->fl_zero == 0)
-		write(1, &sign, 1);
+		prn->size_symb += write(1, &ch, 1);
+	if ((prn->fl_plus == 1 || prn->sign == 1) && prn->fl_minus == 0
+		&& prn->fl_zero == 0)
+		prn->size_symb += write(1, &sign, 1);
 }
 
 int		print_format(t_prn *prn, char *str)
@@ -90,36 +105,32 @@ int		print_format(t_prn *prn, char *str)
 	{
 		if (prn->fl_plus == 1 || prn->sign == 1)
 		{
-			if (prn->sign == 1)
-				write(1, "-", 1);
-			else
-				write(1, "+", 1);
-			prn->width --;
+			(prn->sign == 1) ? write(1, "-", 1) : write(1, "+", 1);
+			prn->size_symb++;
+			prn->width--;
 		}
-		write(1, str, ft_strlen(str));
+		prn->size_symb += write(1, str, ft_strlen(str));
 		print_flag_str(prn, len);
 	}
 	else
 	{
 		print_flag_str(prn, len);
-		write(1, str, ft_strlen(str));
+		prn->size_symb += write(1, str, ft_strlen(str));
 	}
-	prn->width += (prn->sign == 0) ? 0 : 1;
 	return (prn->width);
 }
 
-void add_point(char *str, t_prn *prn, int degree)
+void	add_point(char *str, t_prn *prn, int degree)
 {
 	int	len;
 	int	count;
 
 	if (prn->type == 'g' || prn->type == 'G')
-		count = (degree < 0 || ((degree + 1 - prn->precision) >= 0 && degree > 0)) ?
-				1 : degree + 1;
+		count = (degree < 0 || ((degree - prn->precision) >= 0
+		&& degree > 0)) ? 1 : degree + 1;
 	else
 		count = (prn->type == 'e' || prn->type == 'E' || degree <= 0) ?
-				1 : degree + 1;
-
+			1 : degree + 1;
 	if (prn->precision == 0)
 		str[count] = '\0';
 	else
