@@ -23,27 +23,27 @@ int main()
 
 	//i = i*3 ;
 	int fd;
-	printf("returnt=%d",ft_printf("\ntext%#.x %#.0x\n", 0, 0));
-	printf("returnt=%d",printf("\ntext%#.x %#.0x\n", 0, 0));
-	printf("returnt=%d",ft_printf("@moulitest: %.x %.0x\n", 0, 0));
-	printf("returnt=%d",printf("@moulitest: %.x %.0x\n", 0, 0));
+	//printf("returnt=%d",ft_printf("\ntext%#.x %#.0x\n", 0, 0));
+	//printf("returnt=%d",printf("\ntext%#.x %#.0x\n", 0, 0));
+	//printf("returnt=%d",ft_printf("@moulitest: %.x %.0x\n", 0, 0));
+	//printf("returnt=%d",printf("@moulitest: %.x %.0x\n", 0, 0));
 	//ft_printf("text %p", &str);
 	//printf("\ntexo %p\n", &str);
 
-	//ft_printf("\ntext %15p\n", &ptr);
-	//printf("\ntexo %15p\n", &ptr);
+	ft_printf("\ntext %p\n", str);
+	printf("\ntexo %p\n", str);
 
-	//ft_printf("\ntext %-20p\n", &ptr);
-	//printf("\ntexo %-20p\n", &ptr);
-	//ft_printf("\ntext %-15p\n", ptr);
-	//printf("\ntexo %-15p\n", ptr);
+	ft_printf("\ntext %-20p\n", ptr);
+	printf("\ntexo %-20p\n", ptr);
+	ft_printf("\ntext %30p\n", &k);
+	printf("\ntexo %30p\n", &k);
 	//ft_printf("");
 	//printf("");
 	//ft_printf("\ntext %-15p\n", &a);
 	//printf("\ntexo %-15p\n", &a);
 
-	ft_printf("\ntext %6.s\n", str);
-	printf("\ntexo %6.s\n", str);
+	//ft_printf("\ntext %6.s\n", str);
+	//printf("\ntexo %6.s\n", str);
 	//ft_printf("\ntext %-6.s\n", str);
 	//printf("\ntexo %-6.s\n", str);
 	//fd = open (argv[1], O_WRONLY | O_CREAT | O_EXCL, 0600);          //O_TRUNK

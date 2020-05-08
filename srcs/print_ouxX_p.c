@@ -48,22 +48,26 @@ void		ft_itoa16(intmax_t num, char *rez, int base, char *basee)
 
 int		print_p(t_prn *prn)
 {
-	unsigned int		num;
-	char				str[27] = "0x7fff";
-	int					len;
-	int					size;
+	size_t	num;
+	char	str[27] ;
+	int		len;
+	int		size;
 
-	ft_bzero(str+6, 22);
-	if(!(num = (unsigned int)va_arg(prn->ap, void*)))
-	{
-		ft_bzero(str + 2, 25);
-		ft_itoa16(num, str + 2, 16, "0123456789abcdef");
-	}
-	else
-		ft_itoa16(num, str + 6, 16, "0123456789abcdef");
+	ft_bzero(str, 27);
+	num = va_arg(prn->ap, size_t );
+	ft_itoa16(num, str , 16, "0123456789abcdef");
+	if(!num && prn->precision ==0)
+		ft_bzero(str, 27);
 	len = ft_strlen(str);
+
+	prn->precision = (len < prn->precision)? prn->precision:len;
+	if(!num && prn->fl_zero && prn->width>prn->precision)
+		prn->precision = prn->width -2;
+	len = (len < prn->precision)? prn->precision +2: len+2;
+	//len = ft_count_len(ft_strlen(str), str,prn);
 	size = (len > prn->width) ? len : prn->width;
-	ft_print_type_csp(size,len, prn, str);
+	//ft_print_type_csp(size,len, prn, str);
+	ft_print_number(len, size, str, prn);
 	prn->size_symb += size;
 	return (size);
 }
