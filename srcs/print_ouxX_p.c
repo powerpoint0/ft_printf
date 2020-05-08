@@ -59,14 +59,11 @@ int		print_p(t_prn *prn)
 	if(!num && prn->precision ==0)
 		ft_bzero(str, 27);
 	len = ft_strlen(str);
-
 	prn->precision = (len < prn->precision)? prn->precision:len;
 	if(!num && prn->fl_zero && prn->width>prn->precision)
 		prn->precision = prn->width -2;
 	len = (len < prn->precision)? prn->precision +2: len+2;
-	//len = ft_count_len(ft_strlen(str), str,prn);
 	size = (len > prn->width) ? len : prn->width;
-	//ft_print_type_csp(size,len, prn, str);
 	ft_print_number(len, size, str, prn);
 	prn->size_symb += size;
 	return (size);
