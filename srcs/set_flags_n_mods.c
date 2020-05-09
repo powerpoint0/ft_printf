@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_flags_n_mods.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoaquin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/09 09:33:44 by dfigg             #+#    #+#             */
+/*   Updated: 2020/05/09 09:33:48 by dfigg            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	find_type(const char *format, t_prn *prn)
+int		find_type(const char *format, t_prn *prn)
 {
 	int		i;
-	int 	size;
-	char	type[16]= "diouxXeEfFgGscp\0";
+	int		size;
+	char	type[16] = "diouxXeEfFgGscp\0";
 
 	size = 0;
 	i = 0;
-	while(format[size] != type[i])
+	while (format[size] != type[i])
 	{
-		if(format[size] == '\0')
+		if (format[size] == '\0')
 			return (-1);
 		if (type[i] == '\0')
 		{
@@ -25,7 +37,7 @@ int	find_type(const char *format, t_prn *prn)
 	return (size);
 }
 
-int	set_flag(const char *format, t_prn *prn, int end)
+int		set_flag(const char *format, t_prn *prn, int end)
 {
 	int		i;
 
@@ -51,13 +63,13 @@ int	set_flag(const char *format, t_prn *prn, int end)
 	return (i);
 }
 
-int set_width(const char *format, int i, t_prn *prn)
+int		set_width(const char *format, int i, t_prn *prn)
 {
-	int	st;
-	char *substring;
+	int		st;
+	char	*substring;
 
 	st = i;
-	if (format[i]== '*')
+	if (format[i] == '*')
 	{
 		prn->width = ft_get_signed_mod_llhh(prn);
 		i++;
@@ -66,37 +78,39 @@ int set_width(const char *format, int i, t_prn *prn)
 	{
 		while (i < prn->size && ft_isdigit(format[i]))
 			i++;
-		if (i == prn->size || format[i] == '.' || ft_find_count("hlL", format[i]) != -1)
+		if (i == prn->size || format[i] == '.' ||
+			ft_find_count("hlL", format[i]) != -1)
 		{
-			prn->width = ft_atoi(substring =ft_strsub(format, st, i));
+			substring = ft_strsub(format, st, i);
+			prn->width = ft_atoi(substring);
 			free(substring);
 		}
-
 		else
 			return (-1);
 	}
 	return (i);
 }
 
-int	set_precision(const char *format, int i, t_prn *prn)
+int		set_precision(const char *format, int i, t_prn *prn)
 {
-	int	st;
-	char *substring;
+	int		st;
+	char	*substring;
 
 	if (format[i] == '.')
 	{
 		st = ++i;
-		while(i < prn->size && ft_find_count("hlL", format[i]) == -1 )
+		while (i < prn->size && ft_find_count("hlL", format[i]) == -1)
 		{
 			if (ft_isdigit(format[i]) == 0 && (format[i] != '*'))
 				return (-1);
 			i++;
 		}
-		if (format[st]== '*')
+		if (format[st] == '*')
 			prn->precision = ft_get_signed_mod_llhh(prn);
 		else
 		{
-			prn->precision = ft_atoi(substring = ft_strsub(format, st, prn->size));
+			substring = ft_strsub(format, st, prn->size);
+			prn->precision = ft_atoi(substring);
 			free(substring);
 		}
 	}
@@ -105,17 +119,17 @@ int	set_precision(const char *format, int i, t_prn *prn)
 	return (i);
 }
 
-int	set_mod(const char *format, int i, t_prn *prn)
+int		set_mod(const char *format, int i, t_prn *prn)
 {
 	if (prn->fd < 0)
 	{
 		prn->fd = 1;
 		write(prn->fd, "error: fd < 0;\t", 15);
-		return(-1);
+		return (-1);
 	}
 	if (ft_strchr("cspouxX", prn->type) != NULL)
 		prn->fl_space = 0;
-	prn->fl_space = (prn->fl_plus)? 0 : prn->fl_space;
+	prn->fl_space = (prn->fl_plus) ? 0 : prn->fl_space;
 	if (format[i] == 'h' && i + 1 == prn->size)
 		prn->mod_h = 1;
 	else if (format[i] == 'h' && format[i + 1] == 'h' && i + 2 == prn->size)
@@ -127,6 +141,6 @@ int	set_mod(const char *format, int i, t_prn *prn)
 	else if (format[i] == 'L' && i + 1 == prn->size)
 		prn->mod_L = 1;
 	else if (i != prn->size)
-		return(-1);
+		return (-1);
 	return (prn->size);
 }

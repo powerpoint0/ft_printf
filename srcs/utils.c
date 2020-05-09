@@ -38,7 +38,7 @@ void		cut_str(char *str)
 
 int			ft_isnan(long double nbr)
 {
-	union test_nan_union	tnan;
+	u_test_nan	tnan;
 
 	tnan.d = (double)nbr;
 	if (tnan.l == 0x7FF8000000000000 || tnan.l == 0xFFF8000000000000)
@@ -48,7 +48,7 @@ int			ft_isnan(long double nbr)
 
 int			ft_isinf(long double nbr)
 {
-	union test_nan_union	tnan;
+	u_test_nan	tnan;
 
 	tnan.d = (double)nbr;
 	if (tnan.l == 0x7FF0000000000000)
