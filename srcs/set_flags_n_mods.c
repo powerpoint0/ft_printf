@@ -68,7 +68,7 @@ int		set_width(const char *format, int i, t_prn *prn)
 	int		st;
 	char	*substring;
 
-	st = i;
+
 	if (format[i] == '*')
 	{
 		if((prn->width = ft_get_signed_mod_llhh(prn))<0)
@@ -78,18 +78,16 @@ int		set_width(const char *format, int i, t_prn *prn)
 		}
 		i++;
 	}
-	else
-	{
+	st = i;
+	if(ft_isdigit(format[i])) {
 		while (i < prn->size && ft_isdigit(format[i]))
 			i++;
 		if (i == prn->size || format[i] == '.' ||
-			ft_find_count("hlL", format[i]) != -1)
-		{
+			ft_find_count("hlL", format[i]) != -1) {
 			substring = ft_strsub(format, st, i);
 			prn->width = ft_atoi(substring);
 			free(substring);
-		}
-		else
+		} else
 			return (-1);
 	}
 	return (i);
@@ -110,7 +108,10 @@ int		set_precision(const char *format, int i, t_prn *prn)
 			i++;
 		}
 		if (format[st] == '*')
-			prn->precision = ft_get_signed_mod_llhh(prn);
+		{
+			if((prn->precision = ft_get_signed_mod_llhh(prn))<0)
+				prn->precision = -1;
+		}
 		else
 		{
 			substring = ft_strsub(format, st, prn->size);
