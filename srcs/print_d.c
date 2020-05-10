@@ -64,7 +64,7 @@ int			ft_count_len(int len, char *str, t_prn *prn)
 
 void		ft_print_flags_numbertype(int len, char *str, t_prn *prn)
 {
-	if (prn->type == 'p' && !ft_strequ(str, "(nil)"))
+	if (prn->type == 'p')
 		write(prn->fd, "0x", 2);
 	if (prn->fl_sharp)
 	{
