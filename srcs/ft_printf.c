@@ -41,7 +41,7 @@ void	clear_format(t_prn *prn)
 	prn->mod_hh = 0;
 	prn->mod_l = 0;
 	prn->mod_ll = 0;
-	prn->mod_L = 0;
+	prn->mod_l_up = 0;
 	prn->size = 0;
 	prn->sign = 0;
 	prn->type = '0';
@@ -78,7 +78,7 @@ int		parsing_type(const char *format, t_prn *prn)
 		print_p(prn);
 	if (format[prn->size] == 'o' || format[prn->size] == 'u' ||
 		format[prn->size] == 'x' || format[prn->size] == 'X')
-		print_ouxX(prn);
+		print_oux(prn);
 	if (format[prn->size] == 'f' || format[prn->size] == 'F' ||
 		format[prn->size] == 'g' || format[prn->size] == 'G' ||
 		format[prn->size] == 'e' || format[prn->size] == 'E')

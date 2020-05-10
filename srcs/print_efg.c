@@ -17,7 +17,7 @@ long double	get_nbr(t_prn *prn)
 {
 	long double		nbr;
 
-	if (prn->mod_L == 1)
+	if (prn->mod_l_up == 1)
 		nbr = va_arg(prn->ap, long double);
 	else
 		nbr = (long double)va_arg(prn->ap, double);

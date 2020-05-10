@@ -21,8 +21,8 @@ int main()
 	//i = i*3 ;
 	int fd;
 
-	ft_printf("{%*d}\n", 5, 42);
-	printf("{%*d}\n", 5, 42);
+	//ft_printf("{%*d}\n", 5, 42);
+	//printf("{%*d}\n", 5, 42);
 	ft_printf("{%.*d}\n", 5, 42);
 	printf("{%.*d}\n", 5, 42);
 	//ft_printf("{%15.*s}\n", -5, "42");
@@ -39,8 +39,8 @@ int main()
 	//ft_printf("\ntext %p\n", str);
 	//printf("\ntexo %p\n", str);
 
-	//ft_printf("\ntext %-20p\n", ptr);
-	//printf("\ntexo %-20p\n", ptr);
+	ft_printf("\ntext %+20*0s|\n", 20,str);
+	printf("\ntexo %+20*0s|\n",20,str);
 	//ft_printf("\ntext %30p\n", &k);
 	//printf("\ntexo %30p\n", &k);
 	//ft_printf("");

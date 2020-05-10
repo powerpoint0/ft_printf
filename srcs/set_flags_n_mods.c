@@ -78,26 +78,26 @@ int		set_width(const char *format, int i, t_prn *prn)
 {
 	int		st;
 
-	if (format[i] == '*')
+	while ((format[i] == '*' || ft_isdigit(format[i])) )
 	{
-		if ((prn->width = ft_get_signed_mod_llhh(prn)) < 0)
+		if (format[i] == '*')
 		{
-			prn->fl_minus = 1;
-			prn->width *= -1;
+			if ((prn->width = ft_get_signed_mod_llhh(prn)) < 0) {
+				prn->fl_minus = 1;
+				prn->width *= -1;
+			}
+			i++;
 		}
-		i++;
-	}
-	st = i;
-	if (ft_isdigit(format[i]))
-	{
+		st = i;
+		if(format[i] == '0')
+			return(-1);
 		while (i < prn->size && ft_isdigit(format[i]))
 			i++;
-		if (i == prn->size || format[i] == '.' ||
-			ft_find_count("hlL", format[i]) != -1)
+		if ((i == prn->size || ft_strchr("*.hlL", format[i])) && st != i)
 			prn->width = strsub_to_int(format, st, i);
-		else
-			return (-1);
 	}
+	if (!(i == prn->size || ft_strchr(".hlL", format[i])))
+		return(-1);
 	return (i);
 }
 
