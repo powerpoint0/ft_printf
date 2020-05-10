@@ -71,7 +71,11 @@ int		set_width(const char *format, int i, t_prn *prn)
 	st = i;
 	if (format[i] == '*')
 	{
-		prn->width = ft_get_signed_mod_llhh(prn);
+		if((prn->width = ft_get_signed_mod_llhh(prn))<0)
+		{
+			prn->fl_minus = 1;
+			prn->width *= -1;
+		}
 		i++;
 	}
 	else

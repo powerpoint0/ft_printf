@@ -34,11 +34,10 @@ uintmax_t	ft_get_unsigned_mod_llhh(t_prn *prn)
 	return (nbr);
 }
 
-void		ft_itoa16(intmax_t num, char *rez, int base, char *basee)
+void		ft_itoa16(uintmax_t num, char *rez, int base, char *basee)
 {
 	int			size;
-	intmax_t	tmp;
-	intmax_t	n;
+	uintmax_t	tmp;
 
 	size = 1;
 	tmp = num;
@@ -47,13 +46,12 @@ void		ft_itoa16(intmax_t num, char *rez, int base, char *basee)
 		*rez = '0';
 		return ;
 	}
-	n = (num >= 0) ? -num : num;
 	while (tmp /= base)
 		size++;
 	while (size--)
 	{
-		rez[size] = basee[(-1) * (n % base)];
-		n /= base;
+		rez[size] = basee[num % base];
+		num /= base;
 	}
 }
 

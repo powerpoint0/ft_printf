@@ -74,7 +74,7 @@ int				print_efg(t_prn *prn);
 int				print_txt(const char *format, int size, t_prn *prn);
 void			ft_print_type_csp(int size, int len, t_prn *prn, char *str);
 
-void			ft_itoa16(intmax_t num, char *rez, int base, char *basee);
+void			ft_itoa16(uintmax_t num, char *rez, int base, char *basee);
 void			ft_print_number(int len, int size, char *str, t_prn *prn);
 void			ft_print_flags_numberType(int len, char *str, t_prn *prn);
 int				ft_count_len(int len, char *str, t_prn *prn);
