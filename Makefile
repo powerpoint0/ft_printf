@@ -30,7 +30,7 @@ SRCS = libft/src/ft_atoi.c \
                srcs/print_d.c	\
                srcs/print_efg.c	\
                srcs/print_f_func.c	\
-               srcs/print_ouxX_p.c	\
+               srcs/print_oux_p.c	\
                srcs/set_flags_n_mods.c	\
                srcs/utils.c	\
 
