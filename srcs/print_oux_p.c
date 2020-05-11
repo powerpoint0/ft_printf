@@ -78,7 +78,7 @@ int			print_p(t_prn *prn)
 	return (size);
 }
 
-int			print_ouxX(t_prn *prn)
+int			print_oux(t_prn *prn)
 {
 	int			len;
 	int			size;

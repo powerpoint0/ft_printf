@@ -16,8 +16,9 @@ int		find_type(const char *format, t_prn *prn)
 {
 	int		i;
 	int		size;
-	char	type[16] = "diouxXeEfFgGscp\0";
+	char	type[16];
 
+	set_str_values(type, "diouxXeEfFgGscp", 16);
 	size = 0;
 	i = 0;
 	while (format[size] != type[i])
@@ -63,15 +64,23 @@ int		set_flag(const char *format, t_prn *prn, int end)
 	return (i);
 }
 
+int		strsub_to_int(const char *str, int st, int end)
+{
+	int		rez;
+
+	rez = 0;
+	while (st < end)
+		rez = rez * 10 + (str[st++] - '0');
+	return (rez);
+}
+
 int		set_width(const char *format, int i, t_prn *prn)
 {
 	int		st;
-	char	*substring;
-
 
 	if (format[i] == '*')
 	{
-		if((prn->width = ft_get_signed_mod_llhh(prn))<0)
+		if ((prn->width = ft_get_signed_mod_llhh(prn)) < 0)
 		{
 			prn->fl_minus = 1;
 			prn->width *= -1;
@@ -79,15 +88,14 @@ int		set_width(const char *format, int i, t_prn *prn)
 		i++;
 	}
 	st = i;
-	if(ft_isdigit(format[i])) {
+	if (ft_isdigit(format[i]))
+	{
 		while (i < prn->size && ft_isdigit(format[i]))
 			i++;
 		if (i == prn->size || format[i] == '.' ||
-			ft_find_count("hlL", format[i]) != -1) {
-			substring = ft_strsub(format, st, i);
-			prn->width = ft_atoi(substring);
-			free(substring);
-		} else
+			ft_find_count("hlL", format[i]) != -1)
+			prn->width = strsub_to_int(format, st, i);
+		else
 			return (-1);
 	}
 	return (i);
@@ -96,7 +104,6 @@ int		set_width(const char *format, int i, t_prn *prn)
 int		set_precision(const char *format, int i, t_prn *prn)
 {
 	int		st;
-	char	*substring;
 
 	if (format[i] == '.')
 	{
@@ -109,15 +116,11 @@ int		set_precision(const char *format, int i, t_prn *prn)
 		}
 		if (format[st] == '*')
 		{
-			if((prn->precision = ft_get_signed_mod_llhh(prn))<0)
+			if ((prn->precision = ft_get_signed_mod_llhh(prn)) < 0)
 				prn->precision = -1;
 		}
 		else
-		{
-			substring = ft_strsub(format, st, prn->size);
-			prn->precision = ft_atoi(substring);
-			free(substring);
-		}
+			prn->precision = strsub_to_int(format, st, prn->size);
 	}
 	if (prn->precision > 0 && (ft_strchr("diouxX", format[prn->size]) != 0))
 		prn->fl_zero = 0;
@@ -144,7 +147,7 @@ int		set_mod(const char *format, int i, t_prn *prn)
 	else if (format[i] == 'l' && format[i + 1] == 'l' && i + 2 == prn->size)
 		prn->mod_ll = 1;
 	else if (format[i] == 'L' && i + 1 == prn->size)
-		prn->mod_L = 1;
+		prn->mod_l_up = 1;
 	else if (i != prn->size)
 		return (-1);
 	return (prn->size);

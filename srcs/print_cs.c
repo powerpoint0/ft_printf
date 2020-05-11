@@ -49,15 +49,16 @@ int		print_s(t_prn *prn)
 	int		len;
 	char	*str;
 	int		size;
-	char	null[7] = "(null)\0";
+	char	null[7];
 
+	set_str_values(null, "(null)", 7);
 	if (!(str = va_arg(prn->ap, char*)))
 		str = null;
 	if (prn->precision > (int)(ft_strlen(str)) || prn->precision == -1)
 		prn->precision = ft_strlen(str);
 	len = prn->precision;
 	size = ft_strlen(str);
-	if (prn->width )
+	if (prn->width)
 		size = (prn->width > prn->precision) ? prn->width : prn->precision;
 	else if (prn->precision >= 0)
 		size = prn->precision;

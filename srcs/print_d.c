@@ -62,7 +62,7 @@ int			ft_count_len(int len, char *str, t_prn *prn)
 	return (len);
 }
 
-void		ft_print_flags_numberType(int len, char *str, t_prn *prn)
+void		ft_print_flags_numbertype(int len, char *str, t_prn *prn)
 {
 	if (prn->type == 'p')
 		write(prn->fd, "0x", 2);
@@ -91,7 +91,7 @@ void		ft_print_number(int len, int size, char *str, t_prn *prn)
 {
 	if (prn->fl_minus)
 	{
-		ft_print_flags_numberType(ft_strlen(str), str, prn);
+		ft_print_flags_numbertype(ft_strlen(str), str, prn);
 		while (len++ < size)
 			write(prn->fd, " ", 1);
 	}
@@ -99,7 +99,7 @@ void		ft_print_number(int len, int size, char *str, t_prn *prn)
 	{
 		while (size - len++)
 			write(prn->fd, " ", 1);
-		ft_print_flags_numberType(ft_strlen(str), str, prn);
+		ft_print_flags_numbertype(ft_strlen(str), str, prn);
 	}
 }
 
@@ -113,7 +113,7 @@ int			print_di(t_prn *prn)
 	ft_bzero(str, 27);
 	num = ft_get_signed_mod_llhh(prn);
 	prn->sign = (num >= 0) ? 1 : (-1);
-	if(num<0)
+	if (num < 0)
 		num *= -1;
 	if (!(num == 0 && prn->precision == 0))
 		ft_itoa16(num, str, 10, "0123456789");

@@ -99,3 +99,12 @@ void		move_under_one(char *str, int degree)
 	while (--degree >= 0)
 		str[degree] = '0';
 }
+
+void	set_str_values(char *str, char *values, int size)
+{
+	bzero(str, size);
+	while (--size >= 0)
+	{
+		str[size] = values[size];
+	}
+}

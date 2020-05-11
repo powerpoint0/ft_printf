@@ -48,7 +48,7 @@ typedef struct	s_prn
 	int			mod_hh;
 	int			mod_l;
 	int			mod_ll;
-	int			mod_L;
+	int			mod_l_up;
 	int			size;
 	int			sign;
 	int			fd;
@@ -68,7 +68,7 @@ int				print_di(t_prn *prn);
 int				print_s(t_prn *prn);
 int				print_c(t_prn *prn);
 int				print_p(t_prn *prn);
-int				print_ouxX(t_prn *prn);
+int				print_oux(t_prn *prn);
 int				print_efg(t_prn *prn);
 
 int				print_txt(const char *format, int size, t_prn *prn);
@@ -76,9 +76,10 @@ void			ft_print_type_csp(int size, int len, t_prn *prn, char *str);
 
 void			ft_itoa16(uintmax_t num, char *rez, int base, char *basee);
 void			ft_print_number(int len, int size, char *str, t_prn *prn);
-void			ft_print_flags_numberType(int len, char *str, t_prn *prn);
+void			ft_print_flags_numbertype(int len, char *str, t_prn *prn);
 int				ft_count_len(int len, char *str, t_prn *prn);
 intmax_t		ft_get_signed_mod_llhh(t_prn *prn);
+void			set_str_values(char *str, char *values, int size);
 
 int				find_type(const char *format, t_prn *prn);
 int				set_flag(const char *format, t_prn *prn, int end);
