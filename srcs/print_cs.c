@@ -53,7 +53,8 @@ int		print_s(t_prn *prn)
 
 	set_str_values(null, "(null)", 7);
 	if (!(str = va_arg(prn->ap, char*)))
-		str = null;
+		str = (prn->precision > 0 && prn->precision < 6) ?
+				"" : null;
 	if (prn->precision > (int)(ft_strlen(str)) || prn->precision == -1)
 		prn->precision = ft_strlen(str);
 	len = prn->precision;

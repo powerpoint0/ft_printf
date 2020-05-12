@@ -25,6 +25,7 @@ SRCS = libft/src/ft_atoi.c \
                libft/src/ft_strlen.c	\
                libft/src/ft_strnew.c	\
                libft/src/ft_strsub.c	\
+               libft/src/ft_strequ.c    \
                srcs/ft_printf.c	\
                srcs/print_cs.c	\
                srcs/print_d.c	\

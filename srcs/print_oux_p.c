@@ -64,14 +64,18 @@ int			print_p(t_prn *prn)
 
 	ft_bzero(str, 27);
 	num = va_arg(prn->ap, size_t);
-	ft_itoa16(num, str, 16, "0123456789abcdef");
-	if (!num && prn->precision == 0)
-		ft_bzero(str, 27);
+	if (num != 0)
+		ft_itoa16(num, str, 16, "0123456789abcdef");
+	else
+		set_str_values(str, "(nil)", 6);
+//	if (!num && prn->precision == 0)
+//		ft_bzero(str, 27);
 	len = ft_strlen(str);
 	prn->precision = (len < prn->precision) ? prn->precision : len;
 	if (!num && prn->fl_zero && prn->width > prn->precision)
 		prn->precision = prn->width - 2;
-	len = (len < prn->precision) ? prn->precision + 2 : len + 2;
+	if (num != 0)
+		len = (len < prn->precision) ? prn->precision + 2 : len + 2;
 	size = (len > prn->width) ? len : prn->width;
 	ft_print_number(len, size, str, prn);
 	prn->size_symb += size;

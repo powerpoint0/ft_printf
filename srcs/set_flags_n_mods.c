@@ -61,6 +61,8 @@ int		set_flag(const char *format, t_prn *prn, int end)
 	}
 	if (prn->fl_minus == 1 && prn->fl_zero == 1)
 		prn->fl_zero = 0;
+	if (prn->fl_zero == 1 && prn->type == 's')
+		prn->fl_zero = 0;
 	return (i);
 }
 
