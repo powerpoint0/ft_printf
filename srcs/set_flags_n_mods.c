@@ -16,9 +16,9 @@ int		find_type(const char *format, t_prn *prn)
 {
 	int		i;
 	int		size;
-	char	type[16];
+	char	type[17];
 
-	set_str_values(type, "diouxXeEfFgGscp", 16);
+	set_str_values(type, "%diouxXeEfFgGscp\0", 17);
 	size = 0;
 	i = 0;
 	while (format[size] != type[i])

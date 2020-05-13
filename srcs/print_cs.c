@@ -38,7 +38,10 @@ int		print_c(t_prn *prn)
 
 	size = (prn->width) ? (prn->width) : 1;
 	len = 1;
-	str[0] = (char)va_arg(prn->ap, int);
+	if(prn->type != '%')
+		str[0] = (char)va_arg(prn->ap, int);
+	else
+		str[0] = '%';
 	ft_print_type_csp(size, len, prn, str);
 	prn->size_symb += size;
 	return (prn->size_symb);

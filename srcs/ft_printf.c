@@ -72,7 +72,7 @@ int		parsing_type(const char *format, t_prn *prn)
 		print_di(prn);
 	if (format[prn->size] == 's')
 		print_s(prn);
-	if (format[prn->size] == 'c')
+	if (format[prn->size] == 'c' || format[prn->size] == '%')
 		print_c(prn);
 	if (format[prn->size] == 'p')
 		print_p(prn);
