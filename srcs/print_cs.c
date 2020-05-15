@@ -38,7 +38,7 @@ int		print_c(t_prn *prn)
 
 	size = (prn->width) ? (prn->width) : 1;
 	len = 1;
-	if(prn->type != '%')
+	if (prn->type != '%')
 		str[0] = (char)va_arg(prn->ap, int);
 	else
 		str[0] = '%';
@@ -68,4 +68,30 @@ int		print_s(t_prn *prn)
 	ft_print_type_csp(size, len, prn, str);
 	prn->size_symb += size;
 	return (prn->size_symb);
+}
+
+int		print_txt(const char *format, int size, t_prn *prn)
+{
+	int	i;
+
+	i = 0;
+	while (i < size && format[i] != '\0')
+	{
+		if (format[i] == '^')
+		{
+			prn->fd = ft_get_signed_mod_llhh(prn);
+			if (prn->fd < 0)
+			{
+				write(1, "\tundefined behavior: fd < 0;\t", 29);
+				return (-1);
+			}
+		}
+		else
+		{
+			write(prn->fd, &format[i], 1);
+			prn->size_symb++;
+		}
+		i++;
+	}
+	return (0);
 }

@@ -64,40 +64,31 @@ int		set_flag(const char *format, t_prn *prn, int end)
 	return (i);
 }
 
-int		strsub_to_int(const char *str, int st, int end)
-{
-	int		rez;
-
-	rez = 0;
-	while (st < end)
-		rez = rez * 10 + (str[st++] - '0');
-	return (rez);
-}
-
 int		set_width(const char *format, int i, t_prn *prn)
 {
 	int		st;
 
-	while ((format[i] == '*' || ft_isdigit(format[i])) )
+	while ((format[i] == '*' || ft_isdigit(format[i])))
 	{
 		if (format[i] == '*')
 		{
-			if ((prn->width = ft_get_signed_mod_llhh(prn)) < 0) {
+			if ((prn->width = ft_get_signed_mod_llhh(prn)) < 0)
+			{
 				prn->fl_minus = 1;
 				prn->width *= -1;
 			}
 			i++;
 		}
 		st = i;
-		if(format[i] == '0')
-			return(-1);
+		if (format[i] == '0')
+			return (-1);
 		while (i < prn->size && ft_isdigit(format[i]))
 			i++;
 		if ((i == prn->size || ft_strchr("*.hlL", format[i])) && st != i)
 			prn->width = strsub_to_int(format, st, i);
 	}
 	if (!(i == prn->size || ft_strchr(".hlL", format[i])))
-		return(-1);
+		return (-1);
 	return (i);
 }
 

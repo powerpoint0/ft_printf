@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dfigg <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/20 16:47:48 by dfigg             #+#    #+#             */
-/*   Updated: 2019/09/20 18:36:17 by dfigg            ###   ########.fr       */
+/*   Created: 2020/05/12 08:21:43 by dfigg             #+#    #+#             */
+/*   Updated: 2020/05/12 08:21:50 by dfigg            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ typedef struct	s_prn
 	char		type;
 }				t_prn;
 
-typedef union
+typedef union	u_inf_nan
 {
 	double		d;
 	uintmax_t	l;
-}				u_test_nan;
+}				t_inf_nan;
 
 int				main();
 int				ft_printf(const char *format, ...);
@@ -73,6 +73,7 @@ int				print_efg(t_prn *prn);
 
 int				print_txt(const char *format, int size, t_prn *prn);
 void			ft_print_type_csp(int size, int len, t_prn *prn, char *str);
+int				strsub_to_int(const char *str, int st, int end);
 
 void			ft_itoa16(uintmax_t num, char *rez, int base, char *basee);
 void			ft_print_number(int len, int size, char *str, t_prn *prn);
@@ -99,6 +100,7 @@ int				ft_isinf(long double nbr);
 int				nan_inf(long double nbr, t_prn *prn, char *str);
 void			add_point(char *str, t_prn *prn, int degree);
 int				correct_str(char *str, t_prn *prn, int degree);
+int				ft_round9(char *str, int count, int degree);
 void			move_under_one(char *str, int degree);
 
 #endif

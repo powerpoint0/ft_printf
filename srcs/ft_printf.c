@@ -12,22 +12,6 @@
 
 #include "ft_printf.h"
 
-int		ft_find_count(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char)c)
-			return (i);
-		i++;
-	}
-	if ((char)c == '\0')
-		return (i);
-	return (-1);
-}
-
 void	clear_format(t_prn *prn)
 {
 	prn->fl_minus = 0;
@@ -83,32 +67,6 @@ int		parsing_type(const char *format, t_prn *prn)
 		format[prn->size] == 'g' || format[prn->size] == 'G' ||
 		format[prn->size] == 'e' || format[prn->size] == 'E')
 		print_efg(prn);
-	return (0);
-}
-
-int		print_txt(const char *format, int size, t_prn *prn)
-{
-	int	i;
-
-	i = 0;
-	while (i < size && format[i] != '\0')
-	{
-		if (format[i] == '^')
-		{
-			prn->fd = ft_get_signed_mod_llhh(prn);
-			if (prn->fd < 0)
-			{
-				write(1, "\tundefined behavior: fd < 0;\t", 29);
-				return (-1);
-			}
-		}
-		else
-		{
-			write(prn->fd, &format[i], 1);
-			prn->size_symb++;
-		}
-		i++;
-	}
 	return (0);
 }
 

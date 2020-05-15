@@ -47,33 +47,6 @@ void		write_to_string(long double nbr, char *str, t_prn *prn, int degree)
 	}
 }
 
-int			ft_round9(char *str, int count, int degree)
-{
-	str[count + 1] = '\0';
-	while (count >= 0)
-	{
-		if (count == 0 && str[count] == '9')
-		{
-			str[count] = '1';
-			degree++;
-			str[ft_strlen(str)] = '0';
-			str[ft_strlen(str) + 1] = '\0';
-		}
-		else
-		{
-			if (count != 0 && str[count] == '9')
-				str[count] = '0';
-			else
-			{
-				str[count] = str[count] + 1;
-				count = 0;
-			}
-		}
-		count--;
-	}
-	return (degree);
-}
-
 int			calc_size(int degree, t_prn *prn)
 {
 	int	size;

@@ -12,16 +12,6 @@
 
 #include "ft_printf.h"
 
-int			ft_islower(int ch)
-{
-	if (ch >= 'a' && ch <= 'z')
-		return (1);
-	if (ch >= 'A' && ch <= 'Z')
-		return (0);
-	else
-		return (-1);
-}
-
 void		cut_str(char *str)
 {
 	int	count;
@@ -38,7 +28,7 @@ void		cut_str(char *str)
 
 int			ft_isnan(long double nbr)
 {
-	u_test_nan	tnan;
+	t_inf_nan	tnan;
 
 	tnan.d = (double)nbr;
 	if (tnan.l == 0x7FF8000000000000 || tnan.l == 0xFFF8000000000000)
@@ -48,7 +38,7 @@ int			ft_isnan(long double nbr)
 
 int			ft_isinf(long double nbr)
 {
-	u_test_nan	tnan;
+	t_inf_nan	tnan;
 
 	tnan.d = (double)nbr;
 	if (tnan.l == 0x7FF0000000000000)
@@ -98,13 +88,4 @@ void		move_under_one(char *str, int degree)
 	}
 	while (--degree >= 0)
 		str[degree] = '0';
-}
-
-void	set_str_values(char *str, char *values, int size)
-{
-	bzero(str, size);
-	while (--size >= 0)
-	{
-		str[size] = values[size];
-	}
 }
