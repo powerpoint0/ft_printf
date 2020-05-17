@@ -80,4 +80,5 @@ add_executable(ft_printf5
 		srcs/print_oux_p.c
 		srcs/set_flags_n_mods.c
 		srcs/utils.c
+		srcs/additional_func.c
 		main.c)

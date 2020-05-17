@@ -33,6 +33,7 @@ SRCS = libft/src/ft_atoi.c \
                srcs/print_oux_p.c	\
                srcs/set_flags_n_mods.c	\
                srcs/utils.c	\
+               srcs/additional_func.c	\
 
 OBJS = $(notdir $(patsubst %.c,%.o,$(SRCS)))
 
