@@ -47,6 +47,8 @@ int			ft_count_len(int len, char *str, t_prn *prn)
 	if (prn->precision == 0 && str[0] == '0')
 		ft_bzero(str, 27);
 	len = ft_strlen(str);
+	//printf("%d\n", len);
+	//printf("%d\n", prn->precision);
 	sign = (prn->sign == -1 || prn->fl_space || (prn->fl_plus &&
 			(ft_strchr("ouxXp", prn->type) == 0))) ? 1 : 0;
 	if (prn->fl_sharp)
@@ -59,6 +61,8 @@ int			ft_count_len(int len, char *str, t_prn *prn)
 	else
 		prn->precision = (prn->precision <= len) ? len : prn->precision;
 	len = sign + prn->precision;
+	//printf("%d\n", len);
+	//printf("%d\n", prn->precision);
 	return (len);
 }
 
@@ -117,6 +121,7 @@ int			print_di(t_prn *prn)
 		num *= -1;
 	if (!(num == 0 && prn->precision == 0))
 		ft_itoa16(num, str, 10, "0123456789");
+	//printf("%d\n", prn->precision);
 	len = ft_count_len(ft_strlen(str), str, prn);
 	size = (prn->width > len) ? prn->width : len;
 	ft_print_number(len, size, str, prn);

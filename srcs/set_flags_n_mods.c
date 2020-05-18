@@ -76,6 +76,7 @@ int		set_width(const char *format, int i, t_prn *prn)
 			{
 				prn->fl_minus = 1;
 				prn->width *= -1;
+				prn->fl_zero =(prn->fl_minus == 1 && prn->fl_zero == 1) ? 0 : prn->fl_zero;
 			}
 			i++;
 		}
@@ -111,7 +112,7 @@ int		set_precision(const char *format, int i, t_prn *prn)
 				prn->precision = -1;
 		}
 		else
-			prn->precision = strsub_to_int(format, st, prn->size);
+			prn->precision = strsub_to_int(format, st, i);
 	}
 	if (prn->precision > 0 && (ft_strchr("diouxX", format[prn->size]) != 0))
 		prn->fl_zero = 0;

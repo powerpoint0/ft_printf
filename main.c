@@ -21,10 +21,13 @@ int main()
 	//i = i*3 ;
 	int fd;
 
+
 	//ft_printf("{%*d}\n", 5, 42);
 	//printf("{%*d}\n", 5, 42);
-	ft_printf("{%.*%d}\n", 5, 42);
-	printf("{%.*%d}\n",5, 42);
+	ft_printf("{%.37ld}\n",-22337203685477);
+	printf("{%.37ld}\n",-22337203685477);
+	//ft_printf("{%0*i}\n", -7, -54);
+	//printf("{%0*i}\n",-7, -54);
 	//ft_printf("{%15.*s}\n", -5, "42");
 	//printf("{%15.*s}\n", -5, "42");
 	//ft_printf("{%.*s}\n", -5, "42");
