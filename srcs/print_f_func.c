@@ -75,9 +75,6 @@ void	print_flag_str(t_prn *prn, int len)
 	char	ch;
 
 	sign = (prn->sign == 1) ? '-' : '+';
-	if (prn->fl_space == 1 && prn->fl_plus != 1 && prn->sign != 1 &&
-		prn->width == len)
-		prn->size_symb += write(1, " ", 1);
 	if ((prn->fl_plus == 1 || prn->sign == 1) && prn->fl_minus == 0)
 	{
 		if (prn->width > len)
@@ -94,6 +91,19 @@ void	print_flag_str(t_prn *prn, int len)
 		prn->size_symb += write(1, &sign, 1);
 }
 
+int		print_format2(t_prn *prn, char *str)
+{
+	int len;
+
+	len = ft_strlen(str);
+	if (prn->width < len)
+		prn->width = (prn->sign == 0) ? len : (len + 1);
+
+
+	return (prn->width);
+}
+
+
 int		print_format(t_prn *prn, char *str)
 {
 	int	len;
@@ -101,6 +111,11 @@ int		print_format(t_prn *prn, char *str)
 	len = ft_strlen(str);
 	if (prn->width < len)
 		prn->width = (prn->sign == 0) ? len : (len + 1);
+	if (prn->fl_space == 1 && prn->fl_plus != 1 && prn->sign != 1)
+	{
+		prn->size_symb += write(1, " ", 1);
+		prn->width--;
+	}
 	if (prn->fl_minus == 1)
 	{
 		if (prn->fl_plus == 1 || prn->sign == 1)
@@ -131,7 +146,7 @@ void	add_point(char *str, t_prn *prn, int degree)
 	else
 		count = (prn->type == 'e' || prn->type == 'E' || degree <= 0) ?
 			1 : degree + 1;
-	if (prn->precision == 0)
+	if (prn->precision == 0 && prn->fl_sharp == 0)
 		str[count] = '\0';
 	else
 	{

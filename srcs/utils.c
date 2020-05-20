@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void		cut_str(char *str)
+void		cut_str(char *str, t_prn *prn)
 {
 	int	count;
 
@@ -22,7 +22,7 @@ void		cut_str(char *str)
 		str[count] = '\0';
 		count--;
 	}
-	if (str[count] == '.')
+	if (str[count] == '.' && prn->fl_sharp == 0)
 		str[count] = '\0';
 }
 

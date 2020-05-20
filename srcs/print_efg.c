@@ -54,7 +54,7 @@ int			calc_size(int degree, t_prn *prn)
 	if (prn->type == 'g' || prn->type == 'G')
 	{
 		size = (degree < 0 && degree > -5) ?
-				((-degree) + prn->precision) : prn->precision;
+			((-degree) + prn->precision) : prn->precision;
 	}
 	else
 	{
@@ -107,7 +107,7 @@ int			print_efg(t_prn *prn)
 			add_exp(str, degree, prn);
 		if (prn->type == 'g' || prn->type == 'G')
 		{
-			cut_str(str);
+			cut_str(str, prn);
 			if (degree < -4 || ((degree - prn->precision) >= 0 &&
 				degree > 0))
 				add_exp(str, degree, prn);

@@ -93,7 +93,7 @@ long double		get_nbr(t_prn *prn);
 int				print_format(t_prn *prn, char *str);
 int				ft_islower(int ch);
 int				get_degree(long double *nbr);
-void			cut_str(char *str);
+void			cut_str(char *str, t_prn *prn);
 void			add_exp(char *str, int degree, t_prn *prn);
 int				ft_isnan(long double nbr);
 int				ft_isinf(long double nbr);
